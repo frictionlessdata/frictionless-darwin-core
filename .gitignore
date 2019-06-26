@@ -1,0 +1,4 @@
+# banish Mac .DS_Store files, __pycache__,...
+.DS_Store
+__pycache__
+local.py
