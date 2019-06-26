@@ -1,4 +1,4 @@
-# Frictionless DarwinCore
+# Frictionless Darwin Core
 A tool that convert [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Core_Archive) into [Frictionless Data Package](https://frictionlessdata.io/specs/data-package/).
 
 ## Rationale
@@ -6,13 +6,13 @@ A tool that convert [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_C
 
 **Frictionless Data Package** is domain agnostic data publication standard that offers a variety of cross technology tools.
 
-Bridging these two data standard ecosystems is the vision guiding this project.
+Bridging these two data standard ecosystems is our vision. This project is supported by Open Knowledge Foundation and funded under the [Frictionless Data Tool Fund](https://toolfund.frictionlessdata.io/).
 
 ## Introduction
 This tool will automatically convert any DwCA into Tabular Data Package.
 
 ## Test cases
-The [initial test cases](./testCases.md) cover a wide variety of Darwin Core usage. These case should give enough confidence that basic incompatibilities are identified, reported and solved.
+The [initial test cases](./testCases.md) cover a wide variety of Darwin Core usage. These cases should give enough confidence that basic incompatibilities are identified, reported and solved.
 
 ## Contributing
-You are encouraged to contribute by identifying new issues and helping to solve them.
+You are encouraged to contribute by identifying/reporting issues and helping to solve them.
