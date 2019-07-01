@@ -11,8 +11,15 @@ Bridging these two data ecosystems is our vision. This project is supported by [
 ## Introduction
 This tool will automatically convert any DwCA into a Frictionless Tabular Data Package.
 
+## Darwin Core terms
+Darwin Core is a very persmissive standard some recommandations but almost no constraining rules. This [table](https://github.com/andrejjh/FrictionlessDarwinCore/blob/master/data/fdwc_terms.csv) assigns Frictionless Data Package's type, format and constraints to every [Darwin Core term](https://dwc.tdwg.org/terms/).
+Values that do not comply with these **Frictionless DarwinCore rules** will automatically raise warnings.
+
 ## Test cases suite
 The initial [test cases suite](./testCases.md) covers a wide variety of Darwin Core usages. It should give enough confidence that basic incompatibilities are identified, reported and solved but it will not guarantee that all possible DwC Archives will automatically translate into valid Data Packages.
 
 ## Contributing
 You are encouraged to contribute by identifying/reporting issues or incompatiblities and helping to solve them.
+
+## Not familiar with Darwin Core?
+Have a look at iDigBio's [Darwin Core Hour](https://www.idigbio.org/content/darwin-core-hour-webinar-series) Webinar Series.
