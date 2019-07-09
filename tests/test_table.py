@@ -3,11 +3,11 @@ import unittest
 from FrictionlessDarwinCore import DwCTable
 
 class TestTable(unittest.TestCase):
-    path = '../data/occurrence.txt'
+    path = 'data/occurrence.txt'
 
-    def test_load(self):
+    def test_infer(self):
         """
-        Test that it can load Table from a csv file
+        Test that it can infer a Table from a txt file
         """
         table = DwCTable(TestTable.path)
         self.assertIsNotNone(table)
