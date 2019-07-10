@@ -4,4 +4,5 @@
 from .vocabulary import DwCVocabulary
 from .table import DwCTable
 from .resource import DwCResource
+from .package import DwCPackage
 

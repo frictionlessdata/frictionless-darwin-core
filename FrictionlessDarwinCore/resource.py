@@ -6,8 +6,8 @@ import zipfile
 class DwCResource(Resource):
     voc = DwCVocabulary('../data/fdwc_terms.csv')
 
-    def __init__(self, descriptor):
-        Resource.__init__(self, descriptor)
+    def __init__(self, descriptor,base_path=None):
+        Resource.__init__(self, descriptor,base_path=base_path)
         self.descriptor['format'] = 'csv'
         self.commit()
 
@@ -21,7 +21,7 @@ class DwCResource(Resource):
         self.schema.commit()
 
 if __name__ == '__main__':
-    dataPath = Path('data/occurrence.txt')
+    dataPath = Path('../tests/data/Occurrence.txt')
     r = DwCResource({'path': str(dataPath)})
     r.infer()
     r.save('../tmp/dataresource.json')

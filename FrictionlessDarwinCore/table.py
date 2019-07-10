@@ -17,7 +17,7 @@ class DwCTable(Table):
         self.schema.commit()
 
 if __name__ == '__main__':
-    table = DwCTable('../data/occurrence.txt')
+    table = DwCTable('../tests/data/occurrence.txt')
     table.infer()
     table.save('../tmp/t1/data.csv')
     table.schema.save('../tmp/t1/dataschema.json')
