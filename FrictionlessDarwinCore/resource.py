@@ -4,7 +4,7 @@ from pathlib import Path
 import zipfile
 
 class DwCResource(Resource):
-    voc = DwCVocabulary('../data/fdwc_terms.csv')
+    voc = DwCVocabulary()
 
     def __init__(self, descriptor,base_path=None):
         Resource.__init__(self, descriptor,base_path=base_path)
@@ -18,11 +18,12 @@ class DwCResource(Resource):
             if term:
                 self.schema.update_field(field.name, {'type': term['type']})
                 self.schema.update_field(field.name, {'format': term['format']})
+            else:
+                print(field.name)
         self.schema.commit()
 
 if __name__ == '__main__':
-    dataPath = Path('../tests/data/Occurrence.txt')
-    r = DwCResource({'path': str(dataPath)})
+    dataPath = Path('data/Occurrence.txt')
+    r = DwCResource({'path': str(dataPath)}, '../tests/')
     r.infer()
-    r.save('../tmp/dataresource.json')
     print(r.descriptor)

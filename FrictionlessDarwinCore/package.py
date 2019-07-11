@@ -25,8 +25,9 @@ class DwCPackage(Package):
             Package.add_resource(self,r.descriptor)
 
 if __name__ == '__main__':
-    p = DwCPackage('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip', '../tmp/dwca-rbins_saproxilyc_beetles-v9.37')
+    p = DwCPackage('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip', '../tmp/datapackage')
     p.infer()
+    p.commit()
     p.save('../tmp/fdwc.zip')
     p2= Package('../tmp/fdwc.zip')
     print(p.valid)

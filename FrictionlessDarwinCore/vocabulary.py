@@ -1,10 +1,13 @@
 import csv
 
 class DwCVocabulary:
+    default_path = '../data/fdwc_terms.csv'
 
-    def __init__(self,file):
+    def __init__(self,path=None):
         self.dwcTerms = dict()
-        with open(file, newline='') as csvfile:
+        if path==None:
+            path=self.default_path
+        with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile, )
             for row in reader:
                 termDict= dict()
@@ -20,6 +23,6 @@ class DwCVocabulary:
             return len(self.dwcTerms)
 
 if __name__ == '__main__':
-    dwcVoc = DwCVocabulary('../data/fdwc_terms.csv')
+    dwcVoc = DwCVocabulary()
     print(dwcVoc.term('countryCode'))
 
