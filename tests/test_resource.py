@@ -3,7 +3,7 @@ import unittest
 from FrictionlessDarwinCore import DwCResource
 
 class TestResource(unittest.TestCase):
-    path = 'data/occurrence.txt'
+    path = 'data/occurrence.csv'
 
     def test_infer(self):
         """
@@ -18,7 +18,7 @@ class TestResource(unittest.TestCase):
         """
         Test that it can retrieve fields
         """
-        r = DwCResource({'path': TestResource.path})
+        r = DwCResource({'path': TestResource.path}, '../tests/')
         self.assertIsNotNone(r)
         r.infer()
         self.assertIsNotNone(r.schema.get_field('countryCode'))
@@ -26,6 +26,18 @@ class TestResource(unittest.TestCase):
         self.assertIsNotNone(r.schema.get_field('decimalLatitude'))
         self.assertIsNotNone(r.schema.get_field('decimalLongitude'))
         self.assertIsNone(r.schema.get_field('zorglub'))
+
+    def test_eventDate(self):
+        """
+        Test that 'event' field is there with 'string' type and 'default' format
+        """
+        r = DwCResource({'path': TestResource.path})
+        self.assertIsNotNone(r)
+        r.infer()
+        eventDate_field=r.schema.get_field('eventDate')
+        self.assertIsNotNone(eventDate_field)
+        self.assertEqual(eventDate_field.type,'string')
+        self.assertEqual(eventDate_field.format,'default')
 
     def test_id(self):
         """

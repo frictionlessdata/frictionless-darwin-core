@@ -1,10 +1,13 @@
 from datapackage import Package, Resource
+from tableschema import Field
 from pathlib import Path
-from FrictionlessDarwinCore import DwCResource
+from FrictionlessDarwinCore import DwCVocabulary
 
 import zipfile
 
 class DwCPackage(Package):
+    voc = DwCVocabulary()
+
     def __init__(self, dwca,base_path=None):
         Package.__init__(self,base_path=base_path)
         self.dwca_path = Path(dwca)
@@ -20,14 +23,19 @@ class DwCPackage(Package):
                 ofile = ofile.with_suffix('.csv')
             ofile.touch()
             ofile.write_bytes(zf.read(info.filename))
-            r= DwCResource({'path': str(ofile.name)},base_path=self.base_path)
+            r= Resource({'path': str(ofile.name)},base_path=self.base_path)
             r.infer()
-            Package.add_resource(self,r.descriptor)
+            if r.tabular:  # a DarwinCore data file
+                print('isTabular:', str(ofile.name))
+                for field in r.schema.fields:
+                    term = DwCPackage.voc.term(field.name)
+                    if term:
+                        r.schema.update_field(field.name, {'type': term['type']})
+                        r.schema.update_field(field.name, {'format': term['format']})
+                r.schema.commit()
+            self.add_resource(r.descriptor)
 
 if __name__ == '__main__':
     p = DwCPackage('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip', '../tmp/datapackage')
     p.infer()
-    p.commit()
-    p.save('../tmp/fdwc.zip')
-    p2= Package('../tmp/fdwc.zip')
-    print(p.valid)
+    print(p.descriptor)
