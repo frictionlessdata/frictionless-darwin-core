@@ -28,9 +28,15 @@ class DwCPackage(Package):
             self.add_resource(r.descriptor)
         self.commit()
 
+    def document(self):
+        # Add a README.md file that describes the package
+        ofile= Path(self.base_path) / 'README.md'
+        ofile.write_text('orginal DwCA:' + self.dwca_path.name)
+
 if __name__ == '__main__':
     p = DwCPackage('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip', '../tmp/datapackage')
     p.infer()
+    p.document()
     p.save('../tmp/t1/my_first_fdwc.zip')
     print(p.valid)
     print(p.descriptor)

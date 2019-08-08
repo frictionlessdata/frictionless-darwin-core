@@ -15,6 +15,21 @@ class TestPackage(unittest.TestCase):
         p.infer()
         self.assertTrue(p.valid)
 
+    def test_eventDate(self):
+        """
+        Test that 'event' field is there with 'string' type and 'default' format
+        """
+        p = DwCPackage(TestPackage.pathS1)
+        self.assertIsNotNone(p)
+        p.infer()
+        self.assertTrue(p.valid)
+        r=p.get_resource('occurrence')
+        self.assertIsNotNone(r)
+        eventDate_field = r.schema.get_field('eventDate')
+        self.assertIsNotNone(eventDate_field)
+        self.assertEqual(eventDate_field.type, 'string')
+        self.assertEqual(eventDate_field.format, 'default')
+
 
 if __name__ == '__main__':
     unittest.main()
