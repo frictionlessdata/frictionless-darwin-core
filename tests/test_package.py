@@ -15,5 +15,6 @@ class TestPackage(unittest.TestCase):
         p.infer()
         self.assertTrue(p.valid)
 
+
 if __name__ == '__main__':
     unittest.main()
