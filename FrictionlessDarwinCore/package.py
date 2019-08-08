@@ -14,7 +14,8 @@ class DwCPackage(Package):
 
     def infer(self):
         zf = zipfile.ZipFile(self.dwca_path)
-        fdp_folder = Path(self.dwca_path).parent / 'datapackage'
+#        fdp_folder = Path(self.dwca_path).parent / 'datapackage'
+        fdp_folder = Path(self.base_path)
         fdp_folder.mkdir(0o777, False, True)
         Package.base_path=str(fdp_folder)
         for info in zf.infolist():
