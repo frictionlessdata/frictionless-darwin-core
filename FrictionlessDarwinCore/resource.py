@@ -1,7 +1,6 @@
 from datapackage import Resource
 from FrictionlessDarwinCore import DwCVocabulary
 from pathlib import Path
-import zipfile
 
 class DwCResource(Resource):
     voc = DwCVocabulary()

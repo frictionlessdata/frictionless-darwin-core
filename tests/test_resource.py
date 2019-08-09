@@ -31,7 +31,7 @@ class TestResource(unittest.TestCase):
         """
         Test that 'event' field is there with 'string' type and 'default' format
         """
-        r = DwCResource({'path': TestResource.path})
+        r = DwCResource({'path': TestResource.path}, '../tests/')
         self.assertIsNotNone(r)
         r.infer()
         eventDate_field=r.schema.get_field('eventDate')
