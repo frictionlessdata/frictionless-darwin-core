@@ -5,8 +5,8 @@ They offer a diversity of cores: **Occurrence**, **Checklist** and **Event** and
 All except the last one are build with GBIF's IPT.
 
 ## Simple cases
-* S0:[Inventaire et dénombrement des oiseaux du Parc Naturel Communautaire de la Vallée du Sitatunga (Sud Bénin)](https://www.gbif.org/dataset/3194e21c-447a-410d-bb09-31398482de1f),
-Metadata only [(EML)](http://ipt.gbifbenin.org/eml.do?r=credi&v=1.1)
+* S0:[Reef Life Survey: Global reef fish dataset](https://www.gbif.org/dataset/38f06820-08c5-42b2-94f6-47cc3e83a54a),
+Metadata only [(EML)](http://ipt.ala.org.au/eml.do?r=global)
 * S1:[Collection of saproxylic and xylobiont Beetles](https://www.gbif.org/dataset/d3d38190-0c13-11df-b8c6-b8a03c50a862)
 Occurrence core, no extension [(DwCA)](https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles)
 * S2: [Afromoths, online database of Afrotropical moth species (Lepidoptera)](https://www.gbif.org/dataset/65c9103f-2fbf-414b-9b0b-e47ca96c5df2)
