@@ -5,13 +5,22 @@ from FrictionlessDarwinCore import DwCMetadata
 class TestMetadata(unittest.TestCase):
     S0path = 'data/S0eml.xml'
     S0url = 'http://ipt.ala.org.au/eml.do?r=global'
-    S0hd= '6864c0b0ffd6e257593cf7804b042848'
+    S0hd= 'f85862dab043121553ffe6875a92cb0a'
 
-    def test_SO(self):
+    def test_SOurl(self):
         """
-        Test that SO can be documented
+        Test that SOurl can be retrieve and documented with correct secure hash
         """
         m = DwCMetadata(TestMetadata.S0url)
+        self.assertIsNotNone(m)
+        hd= m.document()
+        self.assertEqual(hd,TestMetadata.S0hd)
+
+    def test_SOpath(self):
+        """
+        Test that SOpath can be opened and documented with correct secure hash
+        """
+        m = DwCMetadata(TestMetadata.S0path)
         self.assertIsNotNone(m)
         hd= m.document()
         self.assertEqual(hd,TestMetadata.S0hd)

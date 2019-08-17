@@ -7,7 +7,6 @@ import requests
 import xml.etree.ElementTree as ET
 
 class DwCMetadata:
-    tmp="../tmp/eml.xml"
 
     def __init__(self, eml):
         self.eml = eml
@@ -19,7 +18,7 @@ class DwCMetadata:
             response = requests.get(self.eml)
             root= ET.fromstring(response.text)
         else:
-            root = ET.parse(emlfile).getroot()
+            root = ET.parse(self.eml).getroot()
         dataset=root.find('./dataset')
         self._title(dataset.find('./title'))
         for ai in dataset.findall('./alternateIdentifier'):
@@ -166,9 +165,7 @@ class DwCMetadata:
                 self._element(am)
 
 
-
 if __name__ == '__main__':
-#        m = DwCMetadata('../tests/Data/S0eml.xml')
         m = DwCMetadata('http://ipt.ala.org.au/eml.do?r=global')
         print(m.document())
         m.save('../tmp/README.md')
