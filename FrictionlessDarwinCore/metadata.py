@@ -12,14 +12,15 @@ class DwCMetadata:
         self.eml = eml
         self.allLines= []
 
-    def document(self):
+    def convert(self):
         self.allLines= []
-        if self.eml.startswith('http'):
-            response = requests.get(self.eml)
-            root= ET.fromstring(response.text)
-        else:
-            root = ET.parse(self.eml).getroot()
-        dataset=root.find('./dataset')
+#        if self.eml.startswith('http'):
+#            response = requests.get(self.eml)
+#            emlstring= io.BytesIO(response.content)
+#        else:
+        emlstring=self.eml
+        root = ET.fromstring(emlstring)
+        dataset = root.find('./dataset')
         self._title(dataset.find('./title'))
         for ai in dataset.findall('./alternateIdentifier'):
             self._element(ai)
@@ -43,7 +44,8 @@ class DwCMetadata:
             hash.update(line.encode('utf-8'))
         self.hexdigest= hash.hexdigest()
         self._about()
-        return self.hexdigest
+        s='\n\n'
+        return s.join(self.allLines)
 
     def save(self, toPath):
         ofile = open(toPath, "w")
@@ -56,7 +58,7 @@ class DwCMetadata:
         self._addLine('secure hash:'+ str(self.hexdigest))
 
     def _addLine(self, line):
-        self.allLines.append(line + '\n\n')
+        self.allLines.append(line)
 
     def _title(self, element):
         self._addLine('# ' + element.text)
@@ -123,23 +125,23 @@ class DwCMetadata:
     def _project(self, element):
         if element != None:
             self._addLine('## Project')
-        id=element.get('id')
-        if id !=None:
-            self._addLine('id='+element.get('id'))
-        title = element.find('./title')
-        if title != None:
-            self._element(title)
-        self._person(element.find('./personnel'))
-        self._abstract(element.find('./abstract'))
-        self._abstract(element.find('./funding'))
-        sad=element.find('./studyAreaDescription/descriptor/descriptorValue')
-        if sad != None:
-            self._addLine('## study area description')
-            self._addLine(sad.text)
-        dd=element.find('./designDescription/description/para')
-        if dd != None:
-            self._addLine('## design description')
-            self._addLine(dd.text)
+            id=element.get('id')
+            if id !=None:
+                self._addLine('id='+element.get('id'))
+            title = element.find('./title')
+            if title != None:
+                self._element(title)
+            self._person(element.find('./personnel'))
+            self._abstract(element.find('./abstract'))
+            self._abstract(element.find('./funding'))
+            sad=element.find('./studyAreaDescription/descriptor/descriptorValue')
+            if sad != None:
+                self._addLine('## study area description')
+                self._addLine(sad.text)
+            dd=element.find('./designDescription/description/para')
+            if dd != None:
+                self._addLine('## design description')
+                self._addLine(dd.text)
 
     def _person(self, element):
         if element != None:
@@ -167,5 +169,5 @@ class DwCMetadata:
 
 if __name__ == '__main__':
         m = DwCMetadata('http://ipt.ala.org.au/eml.do?r=global')
-        print(m.document())
+        print(m.convert())
         m.save('../tmp/README.md')
