@@ -1,0 +1,212 @@
+{
+  "id": "b146a93c-657b-4768-aa51-9cabe3dac808",
+  "name": "axiom",
+  "title": "AxIOM: Amphipod crustaceans from insular Posidonia oceanica seagrass meadows",
+  "profile": "tabular-data-package",
+  "licences": [
+    {
+      "name": "(CC-BY)",
+      "path": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution (CC-BY) 4.0 License"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GBIF IPT",
+      "path": "https://ipt.biodiversity.be/resource?r=axiom"
+    }
+  ],
+  "resources": [
+    {
+      "name": "event",
+      "path": "event.txt",
+      "format": "csv",
+      "profile": "tabular-data-resource",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "eventID",
+            "type": "string"
+          },
+          {
+            "name": "parentEventID",
+            "type": "string"
+          },
+          {
+            "name": "samplingProtocol",
+            "type": "string"
+          },
+          {
+            "name": "sampleSizeValue",
+            "type": "string"
+          },
+          {
+            "name": "sampleSizeUnit",
+            "type": "string"
+          },
+          {
+            "name": "samplingEffort",
+            "type": "string"
+          },
+          {
+            "name": "eventDate",
+            "type": "string"
+          },
+          {
+            "name": "eventTime",
+            "type": "string"
+          },
+          {
+            "name": "eventRemarks",
+            "type": "string"
+          },
+          {
+            "name": "waterBody",
+            "type": "string"
+          },
+          {
+            "name": "island",
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "type": "string",
+            "constraints": {
+              "minLength": 2,
+              "maxLength": 2
+            }
+          },
+          {
+            "name": "minimumDepthInMeters",
+            "type": "integer"
+          },
+          {
+            "name": "maximumDepthInMeters",
+            "type": "integer"
+          },
+          {
+            "name": "decimalLatitude",
+            "type": "number",
+            "constraints": {
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "decimalLongitude",
+            "type": "number",
+            "constraints": {
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "geodeticDatum",
+            "type": "string"
+          },
+          {
+            "name": "coordinateUncertaintyInMeters",
+            "type": "integer"
+          }
+        ]
+      },
+      "primaryKey": "id"
+    },
+    {
+      "name": "occurrence",
+      "path": "occurrence.txt",
+      "format": "csv",
+      "profile": "tabular-data-resource",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "basisOfRecord",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "PreservedSpecimen",
+                "FossilSpecimen",
+                "LivingSpecimen",
+                "MaterialSample",
+                "Event",
+                "HumanObservation",
+                "MachineObservation",
+                "Taxon",
+                "Occurrence"
+              ]
+            }
+          },
+          {
+            "name": "occurrenceID",
+            "type": "string"
+          },
+          {
+            "name": "recordNumber",
+            "type": "string"
+          },
+          {
+            "name": "individualCount",
+            "type": "integer"
+          },
+          {
+            "name": "sex",
+            "type": "string"
+          },
+          {
+            "name": "lifeStage",
+            "type": "string"
+          },
+          {
+            "name": "eventID",
+            "type": "string"
+          },
+          {
+            "name": "scientificName",
+            "type": "string"
+          },
+          {
+            "name": "family",
+            "type": "string"
+          },
+          {
+            "name": "genus",
+            "type": "string"
+          },
+          {
+            "name": "specificEpithet",
+            "type": "string"
+          },
+          {
+            "name": "infraspecificEpithet",
+            "type": "string"
+          },
+          {
+            "name": "taxonRank",
+            "type": "string"
+          }
+        ]
+      },
+      "foreignKeys": [
+        {
+          "fields": "id",
+          "reference": {
+            "resource": "event",
+            "fields": "id"
+          }
+        }
+      ]
+    }
+  ]
+}

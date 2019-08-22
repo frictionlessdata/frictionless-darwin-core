@@ -34,8 +34,7 @@ class DwCStructure:
                 resources.append(self._toresource(extension, False))
             self._add('resources', resources)
         djson = json.dumps(self.descriptor)
-        s='\n'
-        return s.join(djson)
+        return djson
 
     def save(self, toPath):
         djson = json.dumps(self.descriptor)
