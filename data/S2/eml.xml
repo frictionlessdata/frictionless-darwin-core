@@ -1,0 +1,128 @@
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+         xmlns:dc="http://purl.org/dc/terms/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml.xsd"
+         packageId="65c9103f-2fbf-414b-9b0b-e47ca96c5df2/v1.7" system="http://gbif.org" scope="system"
+         xml:lang="eng">
+
+<dataset>
+  <alternateIdentifier>65c9103f-2fbf-414b-9b0b-e47ca96c5df2</alternateIdentifier>
+  <alternateIdentifier>https://ipt.biodiversity.be/resource?r=afromoths</alternateIdentifier>
+  <title xml:lang="eng">Afromoths, online database of Afrotropical moth species (Lepidoptera)</title>
+      <creator>
+    <individualName>
+        <givenName>Jurate</givenName>
+      <surName>De Prins</surName>
+    </individualName>
+    <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
+    <positionName>Associate curator (Lepidoptera)</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>jurate.deprins@gmail.com</electronicMailAddress>
+      </creator>
+      <metadataProvider>
+    <individualName>
+        <givenName>André</givenName>
+      <surName>Heughebaert</surName>
+    </individualName>
+    <organizationName>Belgian Biodiversity Platform</organizationName>
+    <positionName>Node Manager</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>aheugheb@ulb.ac.be</electronicMailAddress>
+          <userId directory="http://orcid.org/">0000-0002-7839-5300</userId>
+      </metadataProvider>
+      <associatedParty>
+    <individualName>
+        <givenName>André</givenName>
+      <surName>Heughebaert</surName>
+    </individualName>
+    <electronicMailAddress>aheugheb@ulb.ac.be</electronicMailAddress>
+    <role>user</role>
+      </associatedParty>
+  <pubDate>
+      2019-03-19
+  </pubDate>
+  <language>eng</language>
+  <abstract>
+    <para>This dataset covers all relevant information on every Afrotropical moth species.
+
+The zoogeographic area covered can be defined as the Africa continent south of the Sahara (i.e. excl. Morocco, Algeria, Tunisia, Libya and Egypt), the islands in the Atlantic Ocean: Amsterdam Island, Ascension, Cape Verde Archipelago, Inaccessible Island, St. Helena, São Tomé and Principe, Tristan da Cunha, and the islands in the Indian Ocean: Comores (Anjouan, Grande Comore, Mayotte, Mohéli), Madagascar, Mascarene Islands (La Réunion, Mauritius, Rodrigues), Seychelles (Félicité, Mahé, Praslin, Silhouette, a.o.).
+
+Furthermore, also those moth species occurring in the transition zone to the Palaearctic fauna have been included, namely most of the Arabia Peninsula (Kuwait, Oman, Saudi Arabia, United Arab Emirates, Yemen with Socotra) but not Iraq, Jordan and further north. Also, some Saharan species have been included (e. g. Hoggar Mts. in Algeria, Tibesti Mts. in South Libya).
+
+Utmost care was taken that the data incorporated in the database are correct. We decline any responsibility in case of damage to soft- or hardware based on information used in this website. Persons retrieving information from this website for their own research or for applied aspects such as pest control programmes, should acknowledge the usage of data from this website in the following format:
+
+De Prins, J. &amp; De Prins, W. 2011. Afromoths, online database of Afrotropical moth species (Lepidoptera). World Wide Web electronic publication (www.afromoths.net)</para>
+  </abstract>
+      <keywordSet>
+            <keyword>Checklist</keyword>
+        <keywordThesaurus>GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml</keywordThesaurus>
+      </keywordSet>
+  <intellectualRights>
+    <para>This work is licensed under a <ulink url="http://creativecommons.org/licenses/by/4.0/legalcode"><citetitle>Creative Commons Attribution (CC-BY) 4.0 License</citetitle></ulink>.</para>
+  </intellectualRights>
+  <distribution scope="document">
+    <online>
+      <url function="information">http://www.afromoths.net/</url>
+    </online>
+  </distribution>
+  <coverage>
+      <geographicCoverage>
+          <geographicDescription>subsaharian Africa</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-18.44</westBoundingCoordinate>
+          <eastBoundingCoordinate>53.24</eastBoundingCoordinate>
+          <northBoundingCoordinate>21.48</northBoundingCoordinate>
+          <southBoundingCoordinate>-36.48</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+          <taxonomicCoverage>
+              <taxonomicClassification>
+                  <taxonRankName>order</taxonRankName>
+                <taxonRankValue>Lepidoptera</taxonRankValue>
+              </taxonomicClassification>
+          </taxonomicCoverage>
+  </coverage>
+  <maintenance>
+    <description>
+      <para></para>
+    </description>
+    <maintenanceUpdateFrequency>unkown</maintenanceUpdateFrequency>
+  </maintenance>
+
+      <contact>
+    <individualName>
+        <givenName>Jurate</givenName>
+      <surName>De Prins</surName>
+    </individualName>
+    <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
+    <positionName>Associate curator (Lepidoptera)</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>jurate.deprins@gmail.com</electronicMailAddress>
+      </contact>
+      <contact>
+    <individualName>
+        <givenName>Willy</givenName>
+      <surName>De Prins</surName>
+    </individualName>
+    <organizationName>Royal Belgian Institute of Natural Sciences</organizationName>
+    <positionName>Scientific volunteer</positionName>
+    <electronicMailAddress>willy.deprins@gmail.com</electronicMailAddress>
+          <userId directory="http://orcid.org/">0000-0002-4430-1425</userId>
+      </contact>
+</dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+          <dateStamp>2016-08-16T04:20:04.011+02:00</dateStamp>
+          <hierarchyLevel>dataset</hierarchyLevel>
+          <dc:replaces>65c9103f-2fbf-414b-9b0b-e47ca96c5df2/v1.7.xml</dc:replaces>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>

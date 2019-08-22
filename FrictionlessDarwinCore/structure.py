@@ -20,20 +20,21 @@ class DwCStructure:
 
     def convert(self):
         # convert meta.xml into datapackage descriptor
-        archive = ET.fromstring(self.meta)
         dataset = ET.fromstring(self.eml).find('./dataset')
 
         self._addheader(dataset)
-        resources = []
-        core=archive.find('dwc:core', DwCStructure.ns)
-        self.corename=core.get('rowType').rsplit('/', 1)[1].lower()
+        if self.meta != None:
+            archive = ET.fromstring(self.meta)
+            resources = []
+            core=archive.find('dwc:core', DwCStructure.ns)
+            self.corename=core.get('rowType').rsplit('/', 1)[1].lower()
 
-        resources.append(self._toresource(core, True))
-        for extension in archive.findall('dwc:extension', DwCStructure.ns):
-            resources.append(self._toresource(extension, False))
-        self._add('resources', resources)
+            resources.append(self._toresource(core, True))
+            for extension in archive.findall('dwc:extension', DwCStructure.ns):
+                resources.append(self._toresource(extension, False))
+            self._add('resources', resources)
         djson = json.dumps(self.descriptor)
-        s=''
+        s='\n'
         return s.join(djson)
 
     def save(self, toPath):
@@ -99,11 +100,15 @@ class DwCStructure:
             fname=mterm.rsplit('/', 1)[1]
             term = self.voc.term(fname)
             field['name'] = fname
-            field['type'] = term['type']
-            if term['format'] != 'default':
-                field['format']= term['format']
-            if term['constraints'] != '':
-                field['constraints'] = json.loads(term['constraints'])
+            if term == None:
+                print(fname, 'not a darwin core term.')
+                field['type'] = 'string'
+            else:
+                field['type'] = term['type']
+                if term['format'] != 'default':
+                    field['format']= term['format']
+                if term['constraints'] != '':
+                    field['constraints'] = json.loads(term['constraints'])
             fields.append(field)
         schema['fields']= fields
         r['schema']= schema
@@ -122,6 +127,7 @@ class DwCStructure:
         return r
 
 if __name__ == '__main__':
-        s = DwCStructure('../tests/data/datapackage/meta.xml','../tests/data/datapackage/eml.xml')
+        emls=open('../data/S0/eml.xml').read()
+        s = DwCStructure(None,emls)
         s.convert()
         s.save('../tmp/datapackage.json')

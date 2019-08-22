@@ -63,7 +63,8 @@ class DwCArchive:
 
 
 if __name__ == '__main__':
-    dwca = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37')
+#    dwca = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37')
+    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=afromoths')
 #    dwca = DwCArchive('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip')
     dwca.infer()
 

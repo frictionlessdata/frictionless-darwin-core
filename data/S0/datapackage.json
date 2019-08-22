@@ -1,0 +1,19 @@
+{
+  "id": "38f06820-08c5-42b2-94f6-47cc3e83a54a",
+  "name": "global",
+  "title": "Reef Life Survey: Global reef fish dataset",
+  "profile": "tabular-data-package",
+  "licences": [
+    {
+      "name": "(CC-BY)",
+      "path": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution (CC-BY) 4.0 License"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GBIF IPT",
+      "path": "http://ipt.ala.org.au/resource?r=global"
+    }
+  ]
+}

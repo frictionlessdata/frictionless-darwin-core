@@ -1,0 +1,197 @@
+{
+  "id": "d3d38190-0c13-11df-b8c6-b8a03c50a862",
+  "name": "rbins_saproxilyc_beetles",
+  "title": "Collection of saproxylic and xylobiont Beetles",
+  "profile": "tabular-data-package",
+  "licences": [],
+  "sources": [
+    {
+      "title": "GBIF IPT",
+      "path": "http://ipt.biodiversity.be/resource?r=rbins_saproxilyc_beetles"
+    }
+  ],
+  "resources": [
+    {
+      "name": "occurrence",
+      "path": "occurrence.txt",
+      "format": "csv",
+      "profile": "tabular-data-resource",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "modified",
+            "type": "string"
+          },
+          {
+            "name": "institutionCode",
+            "type": "string"
+          },
+          {
+            "name": "collectionCode",
+            "type": "string"
+          },
+          {
+            "name": "basisOfRecord",
+            "type": "string",
+            "constraints": {
+              "enum": [
+                "PreservedSpecimen",
+                "FossilSpecimen",
+                "LivingSpecimen",
+                "MaterialSample",
+                "Event",
+                "HumanObservation",
+                "MachineObservation",
+                "Taxon",
+                "Occurrence"
+              ]
+            }
+          },
+          {
+            "name": "occurrenceID",
+            "type": "string"
+          },
+          {
+            "name": "catalogNumber",
+            "type": "string"
+          },
+          {
+            "name": "individualCount",
+            "type": "integer"
+          },
+          {
+            "name": "sex",
+            "type": "string"
+          },
+          {
+            "name": "lifeStage",
+            "type": "string"
+          },
+          {
+            "name": "eventDate",
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "type": "integer"
+          },
+          {
+            "name": "month",
+            "type": "integer",
+            "constraints": {
+              "minimum": 1,
+              "maximum": 12
+            }
+          },
+          {
+            "name": "day",
+            "type": "integer",
+            "constraints": {
+              "minimum": 1,
+              "maximum": 31
+            }
+          },
+          {
+            "name": "fieldNotes",
+            "type": "string"
+          },
+          {
+            "name": "countryCode",
+            "type": "string",
+            "constraints": {
+              "minLength": 2,
+              "maxLength": 2
+            }
+          },
+          {
+            "name": "locality",
+            "type": "string"
+          },
+          {
+            "name": "verbatimCoordinates",
+            "type": "string"
+          },
+          {
+            "name": "verbatimCoordinateSystem",
+            "type": "string"
+          },
+          {
+            "name": "decimalLatitude",
+            "type": "number",
+            "constraints": {
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "decimalLongitude",
+            "type": "number",
+            "constraints": {
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "geodeticDatum",
+            "type": "string"
+          },
+          {
+            "name": "coordinateUncertaintyInMeters",
+            "type": "integer"
+          },
+          {
+            "name": "pointRadiusSpatialFit",
+            "type": "string"
+          },
+          {
+            "name": "identifiedBy",
+            "type": "string"
+          },
+          {
+            "name": "scientificName",
+            "type": "string"
+          },
+          {
+            "name": "kingdom",
+            "type": "string"
+          },
+          {
+            "name": "phylum",
+            "type": "string"
+          },
+          {
+            "name": "class",
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "type": "string"
+          },
+          {
+            "name": "family",
+            "type": "string"
+          },
+          {
+            "name": "genus",
+            "type": "string"
+          },
+          {
+            "name": "specificEpithet",
+            "type": "string"
+          },
+          {
+            "name": "nomenclaturalCode",
+            "type": "string"
+          }
+        ]
+      },
+      "primaryKey": "id"
+    }
+  ]
+}

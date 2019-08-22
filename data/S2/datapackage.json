@@ -1,0 +1,115 @@
+{
+  "id": "65c9103f-2fbf-414b-9b0b-e47ca96c5df2",
+  "name": "afromoths",
+  "title": "Afromoths, online database of Afrotropical moth species (Lepidoptera)",
+  "profile": "tabular-data-package",
+  "licences": [
+    {
+      "name": "(CC-BY)",
+      "path": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution (CC-BY) 4.0 License"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GBIF IPT",
+      "path": "https://ipt.biodiversity.be/resource?r=afromoths"
+    }
+  ],
+  "resources": [
+    {
+      "name": "taxon",
+      "path": "taxon.txt",
+      "format": "csv",
+      "profile": "tabular-data-resource",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "taxonID",
+            "type": "string"
+          },
+          {
+            "name": "acceptedNameUsageID",
+            "type": "string"
+          },
+          {
+            "name": "parentNameUsageID",
+            "type": "string"
+          },
+          {
+            "name": "scientificName",
+            "type": "string"
+          },
+          {
+            "name": "namePublishedIn",
+            "type": "string"
+          },
+          {
+            "name": "taxonRank",
+            "type": "string"
+          },
+          {
+            "name": "scientificNameAuthorship",
+            "type": "string"
+          },
+          {
+            "name": "taxonomicStatus",
+            "type": "string"
+          },
+          {
+            "name": "taxonRemarks",
+            "type": "string"
+          }
+        ]
+      },
+      "primaryKey": "id"
+    },
+    {
+      "name": "distribution",
+      "path": "distribution.txt",
+      "format": "csv",
+      "profile": "tabular-data-resource",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "countryCode",
+            "type": "string",
+            "constraints": {
+              "minLength": 2,
+              "maxLength": 2
+            }
+          },
+          {
+            "name": "occurrenceStatus",
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "type": "string"
+          }
+        ]
+      },
+      "foreignKeys": [
+        {
+          "fields": "id",
+          "reference": {
+            "resource": "taxon",
+            "fields": "id"
+          }
+        }
+      ]
+    }
+  ]
+}
