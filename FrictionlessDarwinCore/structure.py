@@ -82,6 +82,9 @@ class DwCStructure:
         r['name']= location.text.split('.')[0]
         r['path']= location.text
         r['format']= 'csv'
+        r['profile']='tabular-data-resource'
+        r['encoding']='utf-8'
+
         schema= {}
         fields= []
         field = {}
@@ -100,7 +103,7 @@ class DwCStructure:
             if term['format'] != 'default':
                 field['format']= term['format']
             if term['constraints'] != '':
-                field['constraints'] = term['constraints']
+                field['constraints'] = json.loads(term['constraints'])
             fields.append(field)
         schema['fields']= fields
         r['schema']= schema

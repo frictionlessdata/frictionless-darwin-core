@@ -8,7 +8,7 @@ class DwCVocabulary:
         if path==None:
             path=self.default_path
         with open(path, newline='') as csvfile:
-            reader = csv.DictReader(csvfile, )
+            reader = csv.DictReader(csvfile)
             for row in reader:
                 termDict= dict()
                 for x,y in row.items():

@@ -1,7 +1,7 @@
 "class","name","type","format","constraints","comment"
 "Record-level","type","string","default",,
 "Record-level","modified","string","default",,"Recommended best practice is to use a date that conforms to ISO 8601:2004(E)."
-"Record-level","language","string","default","MinLength=2, maxLength=2","Recommended best practice is to use RFC 5646 as a controlled vocabulary."
+"Record-level","language","string","default","{ ""minLength"": 2, ""maxLength"": 2} ","Recommended best practice is to use RFC 5646 as a controlled vocabulary."
 "Record-level","license","string","default",,
 "Record-level","rightsHolder","string","default",,
 "Record-level","accessRights","string","default",,
@@ -14,7 +14,7 @@
 "Record-level","collectionCode","string","default",,
 "Record-level","datasetName","string","default",,
 "Record-level","ownerInstitutionCode","string","default",,
-"Record-level","basisOfRecord","string","default",,
+"Record-level","basisOfRecord","string","default","{ ""enum"": [""PreservedSpecimen"",""FossilSpecimen"", ""LivingSpecimen"", ""MaterialSample"", ""Event"", ""HumanObservation"", ""MachineObservation"", ""Taxon"", ""Occurrence""]} ",
 "Record-level","informationWithheld","string","default",,
 "Record-level","dataGeneralizations","string","default",,
 "Record-level","dynamicProperties","string","default",,
@@ -52,11 +52,11 @@
 "Event","fieldNumber","string","default",,
 "Event","eventDate","string","default",,"Recommended best practice is to use a date that conforms to ISO 8601:2004(E)."
 "Event","eventTime","string","default",,"Recommended best practice is to use a date that conforms to ISO 8601:2004(E)."
-"Event","startDayOfYear","integer","default",,
-"Event","endDayOfYear","integer","default",,
+"Event","startDayOfYear","integer","default","{ ""minimum"": 1, ""maximum"": 366} ",
+"Event","endDayOfYear","integer","default","{ ""minimum"": 1, ""maximum"": 366} ",
 "Event","year","integer","default",,
-"Event","month","integer","default",,
-"Event","day","integer","default",,
+"Event","month","integer","default","{ ""minimum"": 1, ""maximum"": 12} ",
+"Event","day","integer","default","{ ""minimum"": 1, ""maximum"": 31} ",
 "Event","verbatimEventDate","string","default",,
 "Event","habitat","string","default",,
 "Event","samplingProtocol","string","default",,
@@ -73,7 +73,7 @@
 "Location","islandGroup","string","default",,
 "Location","island","string","default",,
 "Location","country","string","default",,
-"Location","countryCode","string","default","MinLength=2, maxLength=2","Recommended best practice is to use an ISO 3166-1-alpha-2 country code."
+"Location","countryCode","string","default","{ ""minLength"": 2, ""maxLength"": 2} ","Recommended best practice is to use an ISO 3166-1-alpha-2 country code."
 "Location","stateProvince","string","default",,
 "Location","county","string","default",,
 "Location","municipality","string","default",,
@@ -89,8 +89,8 @@
 "Location","maximumDistanceAboveSurfaceInMeters","string","default",,
 "Location","locationAccordingTo","string","default",,
 "Location","locationRemarks","string","default",,
-"Location","decimalLatitude","number","default","Minimum -90.0,maximun 90.0",
-"Location","decimalLongitude","number","default","Minimum -180.0,maximun 180.0",
+"Location","decimalLatitude","number","default","{ ""minimum"": -90.0, ""maximum"": 90.0} ",
+"Location","decimalLongitude","number","default","{ ""minimum"": -180.0, ""maximum"": 180.0} ",
 "Location","geodeticDatum","string","default",,
 "Location","coordinateUncertaintyInMeters","integer","default",,
 "Location","coordinatePrecision","number","default",,
