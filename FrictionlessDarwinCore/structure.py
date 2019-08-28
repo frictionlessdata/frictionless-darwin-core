@@ -20,9 +20,9 @@ class DwCStructure:
 
     def convert(self):
         # convert meta.xml into datapackage descriptor
-        dataset = ET.fromstring(self.eml).find('./dataset')
-
-        self._addheader(dataset)
+        if self.eml != None:
+            dataset = ET.fromstring(self.eml).find('./dataset')
+            self._addheader(dataset)
         if self.meta != None:
             archive = ET.fromstring(self.meta)
             resources = []
@@ -44,6 +44,7 @@ class DwCStructure:
 
     def _add(self, key, value):
         self.descriptor[key]=value
+
 
     def _addheader(self, dataset):
         licences = []

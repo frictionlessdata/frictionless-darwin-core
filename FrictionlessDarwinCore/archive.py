@@ -18,32 +18,27 @@ class DwCArchive:
         # infer structure from zip content
         emlstring=''
         metastring=''
-        if self.dwca.startswith('http'):
-            # download it
-            response = requests.get(self.dwca)
-            f=open(self.zippath, 'wb')
-            f.write(response.content)
-            f.close()
-        else:
-            self.zippath= self.dwca
         try:
+            if self.dwca.startswith('http'):
+                # download it
+                response = requests.get(self.dwca)
+                f=open(self.zippath, 'wb')
+                f.write(response.content)
+                f.close()
+            else:
+               self.zippath= self.dwca
             zf = zipfile.ZipFile(self.zippath, mode='a')
             for info in zf.infolist():
                 print(info.filename)
-#            ofile = self.folder / info.filename
-#            if ofile.suffix == '.txt':
-#                ofile = ofile.with_suffix('.csv')
-#            ofile.touch()
-#            ofile.write_bytes(zf.read(info.filename))
-#            self.datafiles.append(str(ofile))
                 if info.filename=='eml.xml':
+                    print('got eml.xml')
+                    emlstring=zf.read(info.filename)
+                if info.filename=='metadata.xml':
+                    print('got metadata.xml')
                     emlstring=zf.read(info.filename)
                 if info.filename=='meta.xml':
+                    print('got meta.xml')
                     metastring=zf.read(info.filename)
-
-#                if info.filename.endswith('.txt'):
-#                   zf.write(info.filename, arcname=info.filename.replace('.txt','.csv'))
-
             zf.writestr('readme.md', self.document(emlstring))
             zf.writestr('datapackage.json', self.structure(metastring,emlstring))
         finally:
@@ -66,6 +61,9 @@ if __name__ == '__main__':
 #    dwca = DwCArchive('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip')
 #    dwca = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37')
 #    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=afromoths')
-    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=axiom')
+#    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=axiom')
+#    dwca= DwCArchive('http://api.gbif.org/v1/occurrence/download/request/0004292-190813142620410.zip')
+    dwca= DwCArchive('http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/archive.do?r=botanical_collection')
+#    dwca=DwCArchive('../tmp/fdwc.zip')
     dwca.infer()
 

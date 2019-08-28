@@ -73,23 +73,26 @@ class DwCMetadata:
                 self._addLine(p.text)
 
     def _keywords(self, element):
-        self._addLine('## Keywords')
-        for k in element.findall('./keywordSet'):
-            self._addLine('*'+ k.find('./keyword').text + '* ' + k.find('./keywordThesaurus').text)
+        if element != None:
+            self._addLine('## Keywords')
+            for k in element.findall('./keywordSet'):
+                self._addLine('*'+ k.findtext('./keyword') + '* ' + k.findtext('./keywordThesaurus'))
 
     def _intellectualRigths(self, element):
-        ipr= element.find('./intellectualRights')
-        self._addLine('## Intellectual Property Rights')
-        if ipr != None:
-            self._addLine(ipr.findtext('./para') + ' ['+ ipr.findtext('./para/ulink/citetitle') + ']('+ipr.findtext('./para/ulink') + ')')
+        if element != None:
+            ipr= element.find('./intellectualRights')
+            if ipr != None:
+                self._addLine('## Intellectual Property Rights')
+                self._addLine(ipr.findtext('./para') + ' ['+ ipr.findtext('./para/ulink/citetitle') + ']('+ipr.findtext('./para/ulink') + ')')
 
     def _geographicCoverage(self, element):
-        self._addLine('## Geographic Coverage')
-        self._addLine('Description: ' + element.find('./geographicDescription').text)
-        self._addLine('BoundingCoordinates: West:' + element.find('./boundingCoordinates/westBoundingCoordinate').text +
-            '°, East:' + element.find('./boundingCoordinates/eastBoundingCoordinate').text +
-            '°, North:' + element.find('./boundingCoordinates/northBoundingCoordinate').text +
-            '°, South:' + element.find('./boundingCoordinates/southBoundingCoordinate').text + '°')
+        if element != None:
+            self._addLine('## Geographic Coverage')
+            self._addLine('Description: ' + element.findtext('./geographicDescription'))
+            self._addLine('BoundingCoordinates: West:' + element.findtext('./boundingCoordinates/westBoundingCoordinate') +
+                '°, East:' + element.findtext('./boundingCoordinates/eastBoundingCoordinate') +
+                '°, North:' + element.findtext('./boundingCoordinates/northBoundingCoordinate') +
+                '°, South:' + element.findtext('./boundingCoordinates/southBoundingCoordinate') + '°')
 
     def _taxonomicCoverage(self, element):
         if element != None:
@@ -112,15 +115,15 @@ class DwCMetadata:
     def _methods(self, element):
         if element != None:
             self._addLine('## Methods')
-            ms=element.find('./methodStep/description/para')
+            ms=element.findtext('./methodStep/description/para')
             if ms != None:
-                self._addLine('methodStep: ' + ms.text)
-            se=element.find('./sampling/studyExtent/description/para')
+                self._addLine('methodStep: ' + ms)
+            se=element.findtext('./sampling/studyExtent/description/para')
             if se != None:
-                self._addLine('studyExtent: ' + se.text)
-            sd=element.find('./sampling/samplingDescription/para')
+                self._addLine('studyExtent: ' + se)
+            sd=element.findtext('./sampling/samplingDescription/para')
             if sd != None:
-                self._addLine('samplingDescription: ' + sd.text)
+                self._addLine('samplingDescription: ' + sd)
 
     def _project(self, element):
         if element != None:
@@ -134,28 +137,35 @@ class DwCMetadata:
             self._person(element.find('./personnel'))
             self._abstract(element.find('./abstract'))
             self._abstract(element.find('./funding'))
-            sad=element.find('./studyAreaDescription/descriptor/descriptorValue')
+            sad=element.findtext('./studyAreaDescription/descriptor/descriptorValue')
             if sad != None:
                 self._addLine('## study area description')
-                self._addLine(sad.text)
-            dd=element.find('./designDescription/description/para')
+                self._addLine(sad)
+            dd=element.findtext('./designDescription/description/para')
             if dd != None:
                 self._addLine('## design description')
-                self._addLine(dd.text)
+                self._addLine(dd)
 
     def _person(self, element):
         if element != None:
             self._addLine('## ' + element.tag)
-            self._addLine('Name:'+element.find('./individualName/givenName').text + ' ' + element.find('./individualName/surName').text)
-            org=element.find('./organizationName')
+            ind=element.find('./individualName')
+            if ind != None :
+                name=''
+                if element.find('./givenName') != None:
+                    name = element.find('./givenName') + ' '
+                if element.find('./surName') != None:
+                    element.findtext('./surName')
+                self._addLine('Name:'+name)
+            org=element.findtext('./organizationName')
             if org != None:
-                self._addLine('Organization:'+ org.text)
-            pos=element.find('./positionName')
+                self._addLine('Organization:'+ org)
+            pos=element.findtext('./positionName')
             if pos != None:
-                self._addLine('Position:'+ pos.text)
-            email=element.find('./electronicMailAddress')
+                self._addLine('Position:'+ pos)
+            email=element.findtext('./electronicMailAddress')
             if email != None:
-                self._addLine('email:'+email.text)
+                self._addLine('email:'+email)
             userid=element.find('./userId')
             if userid != None:
                 self._addLine('userId:'+userid.text+ ' ('+ userid.get('directory') + ')')
@@ -168,6 +178,6 @@ class DwCMetadata:
 
 
 if __name__ == '__main__':
-        m = DwCMetadata('http://ipt.ala.org.au/eml.do?r=global')
+        emls=open('../tmp/metadata.xml').read()
+        m = DwCMetadata(emls)
         print(m.convert())
-        m.save('../tmp/README.md')
