@@ -3,27 +3,26 @@ import unittest
 from FrictionlessDarwinCore import DwCMetadata
 
 class TestMetadata(unittest.TestCase):
-    S0path = 'data/S0eml.xml'
+    S0eml = '../data/S0/eml.xml'
+    S0readme = '../data/S0/readme.md'
     S0url = 'http://ipt.ala.org.au/eml.do?r=global'
-    S0hd= 'f85862dab043121553ffe6875a92cb0a'
+    S0hd= '35fd4823b18f3520828fcfe957381455'
 
-    def test_SOurl(self):
-        """
-        Test that SOurl can be retrieve and documented with correct secure hash
-        """
-        m = DwCMetadata(TestMetadata.S0url)
-        self.assertIsNotNone(m)
-        hd= m.document()
-        self.assertEqual(hd,TestMetadata.S0hd)
 
-    def test_SOpath(self):
+    def test_SOeml(self):
         """
-        Test that SOpath can be opened and documented with correct secure hash
+        Test that SOeml can be opened and documented with expected secure hash and content
         """
-        m = DwCMetadata(TestMetadata.S0path)
+        f=open(TestMetadata.S0eml)
+        m = DwCMetadata(f.read())
         self.assertIsNotNone(m)
-        hd= m.document()
-        self.assertEqual(hd,TestMetadata.S0hd)
+        m.convert()
+        self.assertEqual(m.hexdigest,TestMetadata.S0hd)
+#        r=open(TestMetadata.S0readme)
+#       readme = r.read()
+#        self.assertEqual(m.as_markdown(),readme)
+        f.close()
+#        r.close()
 
 if __name__ == '__main__':
     unittest.main()

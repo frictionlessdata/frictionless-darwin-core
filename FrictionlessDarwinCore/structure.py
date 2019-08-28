@@ -10,16 +10,14 @@ class DwCStructure:
 
     def __init__(self, meta, eml):
         self.eml = eml
-#        if eml.startswith('..'):
-#            self.eml=open(eml,'r').read()
         self.meta = meta
-#        if meta.startswith('..'):
-#            self.meta = open(meta, 'r').read()
         self.descriptor = {}
         self.corename=''
+        self.valid=False
 
     def convert(self):
         # convert meta.xml into datapackage descriptor
+        self.descriptor = {}
         if self.eml != None:
             dataset = ET.fromstring(self.eml).find('./dataset')
             self._addheader(dataset)
@@ -33,14 +31,12 @@ class DwCStructure:
             for extension in archive.findall('dwc:extension', DwCStructure.ns):
                 resources.append(self._toresource(extension, False))
             self._add('resources', resources)
-        djson = json.dumps(self.descriptor)
-        return djson
+        self.valid=True
+        return self.as_json()
 
-    def save(self, toPath):
-        djson = json.dumps(self.descriptor)
-        ofile = open(toPath, "w")
-        ofile.writelines(djson)
-        ofile.close()
+
+    def as_json(self):
+        return json.dumps(self.descriptor)
 
     def _add(self, key, value):
         self.descriptor[key]=value
@@ -129,5 +125,4 @@ class DwCStructure:
 if __name__ == '__main__':
         emls=open('../data/S0/eml.xml').read()
         s = DwCStructure(None,emls)
-        s.convert()
-        s.save('../tmp/datapackage.json')
+        print(s.convert())

@@ -9,48 +9,48 @@ import xml.etree.ElementTree as ET
 class DwCMetadata:
 
     def __init__(self, eml):
-        self.eml = eml
         self.allLines= []
+        self.emls= eml
 
     def convert(self):
-        self.allLines= []
-#        if self.eml.startswith('http'):
-#            response = requests.get(self.eml)
-#            emlstring= io.BytesIO(response.content)
-#        else:
-        emlstring=self.eml
-        root = ET.fromstring(emlstring)
-        dataset = root.find('./dataset')
-        self._title(dataset.find('./title'))
-        for ai in dataset.findall('./alternateIdentifier'):
-            self._element(ai)
-        self._element(dataset.find('./pubDate'))
-        self._element(dataset.find('./language'))
-        self._person(dataset.find('./creator'))
-        self._person(dataset.find('./metadataProvider'))
-        self._person(dataset.find('./associatedParty'))
-        self._abstract(dataset.find('./abstract'))
-        self._keywords(dataset)
-        self._intellectualRigths(dataset)
-        self._geographicCoverage(dataset.find('./coverage/geographicCoverage'))
-        self._taxonomicCoverage(dataset.find('./coverage/taxonomicCoverage'))
-        self._maintenance(dataset.find('./maintenance'))
-        self._person(dataset.find('./contact'))
-        self._methods(dataset.find('./methods'))
-        self._project(dataset.find('./project'))
-        self._additionalMetadata(root.find('./additionalMetadata'))
-        hash =blake2b(key=b'FrictionlessDarwinCore', digest_size=16)
-        for line in self.allLines:
-            hash.update(line.encode('utf-8'))
-        self.hexdigest= hash.hexdigest()
-        self._about()
+        self.valid=False
+        try:
+            self.allLines= []
+            root = ET.fromstring(self.emls)
+            dataset = root.find('./dataset')
+            self._title(dataset.find('./title'))
+            for ai in dataset.findall('./alternateIdentifier'):
+                self._element(ai)
+            self._element(dataset.find('./pubDate'))
+            self._element(dataset.find('./language'))
+            self._person(dataset.find('./creator'))
+            self._person(dataset.find('./metadataProvider'))
+            self._person(dataset.find('./associatedParty'))
+            self._abstract(dataset.find('./abstract'))
+            self._keywords(dataset)
+            self._intellectualRigths(dataset)
+            self._geographicCoverage(dataset.find('./coverage/geographicCoverage'))
+            self._taxonomicCoverage(dataset.find('./coverage/taxonomicCoverage'))
+            self._maintenance(dataset.find('./maintenance'))
+            self._person(dataset.find('./contact'))
+            self._methods(dataset.find('./methods'))
+            self._project(dataset.find('./project'))
+            self._additionalMetadata(root.find('./additionalMetadata'))
+            hash =blake2b(key=b'FrictionlessDarwinCore', digest_size=16)
+            for line in self.allLines:
+                hash.update(line.encode('utf-8'))
+            self.hexdigest= hash.hexdigest()
+            self._about()
+        finally:
+            self.valid=True
+        return self.as_markdown()
+
+    def as_markdown(self):
         s='\n\n'
         return s.join(self.allLines)
 
-    def save(self, toPath):
-        ofile = open(toPath, "w")
-        ofile.writelines(self.allLines)
-        ofile.close()
+    def hexgigest(self):
+        return self.hexdigest
 
     def _about(self):
         self._addLine('# About')
@@ -178,6 +178,9 @@ class DwCMetadata:
 
 
 if __name__ == '__main__':
-        emls=open('../tmp/metadata.xml').read()
+        emls=open('../data/S0/eml.xml').read()
         m = DwCMetadata(emls)
         print(m.convert())
+        f = open('../data/S0/readme.md', mode='w')
+        f.write(m.as_markdown())
+        f.close
