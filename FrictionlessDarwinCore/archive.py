@@ -22,6 +22,7 @@ class DwCArchive:
         self.valid = self.metadata.valid and self.structure.valid
 
     def save(self):
+        print('saving to '+ str(self.zippath))
         try:
             zf = zipfile.ZipFile(self.zippath, mode='a')
             # Add a README.md file that describes the package
@@ -66,18 +67,20 @@ class DwCArchive:
         finally:
             zf.close()
 
-    def to_json(self, o):
+    def to_json(self, path):
         try:
+            o=open(path, 'w')
             o.write(self.structure.as_json())
         except:
-            print('writing to_json failed')
+            print('writing json failed')
         finally:
             o.close()
 
-    def to_markdown(self, o):
+    def to_markdown(self, path):
         try:
+            o=open(path, 'w')
             o.write(self.metadata.as_markdown())
         except:
-            print('writing to_markdown failed')
+            print('writing markdown failed')
         finally:
             o.close()

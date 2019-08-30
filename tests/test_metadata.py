@@ -15,14 +15,14 @@ class TestMetadata(unittest.TestCase):
         """
         f=open(TestMetadata.S0eml)
         m = DwCMetadata(f.read())
+        f.close()
         self.assertIsNotNone(m)
         m.convert()
         self.assertEqual(m.hexdigest,TestMetadata.S0hd)
-#        r=open(TestMetadata.S0readme)
-#       readme = r.read()
-#        self.assertEqual(m.as_markdown(),readme)
-        f.close()
-#        r.close()
+        r=open(TestMetadata.S0readme)
+        expected=r.read()
+        r.close()
+        self.assertEqual(m.as_markdown(),expected)
 
 if __name__ == '__main__':
     unittest.main()
