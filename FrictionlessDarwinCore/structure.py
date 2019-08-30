@@ -1,8 +1,7 @@
 from FrictionlessDarwinCore import DwCVocabulary
+import xml.etree.ElementTree as ET
 import re
 import json
-
-import xml.etree.ElementTree as ET
 
 class DwCStructure:
     voc = DwCVocabulary()
@@ -121,8 +120,3 @@ class DwCStructure:
             fkeys.append(fkey)
             r['foreignKeys']=fkeys
         return r
-
-if __name__ == '__main__':
-        emls=open('../data/S0/eml.xml').read()
-        s = DwCStructure(None,emls)
-        print(s.convert())

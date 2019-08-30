@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='fdwc',
+    name='converter',
     version='0.1',
-    py_modules=['fdwc'],
+    py_modules=['converter'],
     install_requires=[
         'Click',
     ],
     entry_points='''
         [console_scripts]
-        fdwc=conveter:cli
+        converter=conveter:cli
     ''',
 )

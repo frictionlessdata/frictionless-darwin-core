@@ -13,7 +13,7 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
 <!--TOC-->
 * [Getting Started](#getting-started)
     * [Installing](#installing)
-    * [Running on CLI](#runing-on-cli)
+    * [Running on CLI](#running-on-cli)
 * [Documentation](#documentation)
     * [Rationale](#rationale)
     * [DarwinCore terms](#darwincore-terms)
@@ -24,14 +24,16 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
 ## Getting Started
 ### Installing
 ```
-pip install frictionlessdarwincore
+pip install FrictionlessDarwinCore
 ```
 
 ### Running on CLI
 
 ```
-frictionlessdarwincore myDwCA.zip
-frictionlessdarwincore https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37 
+fdwc myDwCA.zip
+fdwc https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37 
+fdwc myDwCA.zip --json datapackage.json
+fdwc myDwCA.zip --md readme.md
 ```
 
 ## Documentation

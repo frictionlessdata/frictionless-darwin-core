@@ -21,8 +21,3 @@ class DwCVocabulary:
 
     def size(self):
             return len(self.dwcTerms)
-
-if __name__ == '__main__':
-    dwcVoc = DwCVocabulary()
-    print(dwcVoc.term('countryCode'))
-

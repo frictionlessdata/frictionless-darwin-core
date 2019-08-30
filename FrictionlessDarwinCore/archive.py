@@ -10,17 +10,16 @@ class DwCArchive:
 
     def __init__(self, dwca_pathOrUrl):
         self.dwca=dwca_pathOrUrl
-        self.eml = ''
-        self.meta = ''
+        if self.dwca.startswith('http'):
+            self.download()
+        else:
+            self.zippath = self.dwca
         self.load()
 
     def infer(self):
-        self.metadata = DwCMetadata(self.eml)
         self.metadata.convert()
-        self.structure = DwCStructure(self.meta,self.eml)
         self.structure.convert()
         self.valid = self.metadata.valid and self.structure.valid
-
 
     def save(self):
         try:
@@ -29,54 +28,56 @@ class DwCArchive:
             zf.writestr('readme.md', self.metadata.as_markdown())
             # Add a datapackage.json
             zf.writestr('datapackage.json', self.structure.as_json())
+        except:
+            print('writing to zipfile failed')
         finally:
             zf.close()
 
-    def load(self):
-        # infer structure from zip content
+    def download(self):
+        #  download DwCArchive
         try:
-            if self.dwca.startswith('http'):
-                # download it
-                self.zippath = Path('../tmp/fdwc.zip')
-                response = requests.get(self.dwca)
-                f=open(self.zippath, 'wb')
-                f.write(response.content)
-                f.close()
-            else:
-               self.zippath= self.dwca
+            self.zippath = Path('../tmp/fdwc.zip')
+            response = requests.get(self.dwca)
+            f=open(self.zippath, 'wb')
+            f.write(response.content)
+            f.close()
+        except:
+            print('download failed')
+            self.valid=False;
+        finally:
+            f.close()
 
+    def load(self):
+        try:
             zf = zipfile.ZipFile(self.zippath, mode='r')
             for info in zf.infolist():
                 if info.filename=='eml.xml':
-                    self.eml=zf.read(info.filename).decode()
+                    eml=zf.read(info.filename).decode()
                 if info.filename=='metadata.xml':
-                    self.eml=zf.read(info.filename).decode()
+                    eml=zf.read(info.filename).decode()
                 if info.filename=='meta.xml':
-                    self.meta=zf.read(info.filename).decode()
-            self.valid=self.eml !='' and self.meta !=''
-
+                    meta=zf.read(info.filename).decode()
+            self.metadata = DwCMetadata(eml)
+            self.structure = DwCStructure(meta, eml)
+            self.valid=eml !='' and meta !=''
+        except:
+            print('load zip failed')
+            self.valid=False;
         finally:
             zf.close()
 
     def to_json(self, o):
-        f= open (o, mode='w')
-        f.write(self.structure.as_json())
-        f.close
+        try:
+            o.write(self.structure.as_json())
+        except:
+            print('writing to_json failed')
+        finally:
+            o.close()
 
     def to_markdown(self, o):
-        f= open (o, mode='w')
-        f.write(self.metadata.as_markdown())
-        f.close
-
-
-
-if __name__ == '__main__':
-#    dwca = DwCArchive('../tmp/dwca-rbins_saproxilyc_beetles-v9.37.zip')
-    dwca = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37')
-#    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=afromoths')
-#    dwca= DwCArchive('https://ipt.biodiversity.be/archive.do?r=axiom')
-#    dwca= DwCArchive('http://api.gbif.org/v1/occurrence/download/request/0004292-190813142620410.zip')
-#    dwca= DwCArchive('http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/archive.do?r=botanical_collection')
-#    dwca=DwCArchive('../tmp/fdwc.zip')
-    dwca.infer()
-
+        try:
+            o.write(self.metadata.as_markdown())
+        except:
+            print('writing to_markdown failed')
+        finally:
+            o.close()

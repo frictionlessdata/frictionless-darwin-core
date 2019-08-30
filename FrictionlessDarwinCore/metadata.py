@@ -1,9 +1,5 @@
-from pathlib import Path
-
-import io
 from hashlib import blake2b
 import datetime
-import requests
 import xml.etree.ElementTree as ET
 
 class DwCMetadata:
@@ -175,12 +171,3 @@ class DwCMetadata:
             self._addLine('## Additional Metadata')
             for am in element.findall('./metadata/gbif/*'):
                 self._element(am)
-
-
-if __name__ == '__main__':
-        emls=open('../data/S0/eml.xml').read()
-        m = DwCMetadata(emls)
-        print(m.convert())
-        f = open('../data/S0/readme.md', mode='w')
-        f.write(m.as_markdown())
-        f.close
