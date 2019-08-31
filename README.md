@@ -16,11 +16,12 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
     * [Running on CLI](#running-on-cli)
 * [Documentation](#documentation)
     * [Rationale](#rationale)
+    * [What it does?](#what-it-does)
     * [DarwinCore terms](#darwincore-terms)
     * [Test cases suite](#test-cases-suite)
 * [Contributing](#contributing)
 <!--TOC-->
-        
+
 ## Getting Started
 ### Installing
 ```
@@ -30,10 +31,17 @@ pip install FrictionlessDarwinCore
 ### Running on CLI
 
 ```
-fdwc myDwCA.zip
-fdwc https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37 
-fdwc myDwCA.zip --json datapackage.json
-fdwc myDwCA.zip --md readme.md
+# convert from local archive
+fdwca myDwCA.zip
+
+# convert from URL (archive accessible on internet)
+fdwca https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37
+
+# only generate JSON descriptor (datapackage.json)
+fdwca myDwCA.zip --json datapackage.json
+
+# only generate markdown human readable metadata (readme.md)
+fdwca myDwCA.zip --md readme.md
 ```
 
 ## Documentation
@@ -43,6 +51,19 @@ fdwc myDwCA.zip --md readme.md
 **Frictionless Data Package** is an emerging, domain agnostic, data standard that offers a variety of cross technology tools.
 
 Bridging these two data ecosystems is our vision. This project is supported by [Open Knowledge Foundation](https://okfn.org/) and funded under the [Frictionless Data Tool Fund](https://toolfund.frictionlessdata.io/).
+
+### What it does?
+DarwinCore archives consist of:
+* a **core** data file
+* optionally, 1 or more **extension** data file(s)
+* eml.xml: **metadata** written in Ecological Metadata Language
+* meta.xml: the **structure** of the DarwinCore data files
+
+This conversion tool appends two files to the archive:
+* **datapackage.json**: data package descriptor of the data files
+* readme.md: markdown, human readable, metadata
+![frictionless Darwin Core](fdwc.png)
+The tool can also generate these two files as separate outputs without touching the archive.
 
 ### DarwinCore terms
 Darwin Core is a very persmissive standard some recommandations but almost no constraining rules. This [table](https://github.com/andrejjh/FrictionlessDarwinCore/blob/master/data/fdwc_terms.csv) assigns Frictionless Data Package's type, format and constraints to every [Darwin Core term](https://dwc.tdwg.org/terms/).
