@@ -19,10 +19,6 @@ class TestMetadata(unittest.TestCase):
         self.assertIsNotNone(m)
         m.convert()
         self.assertEqual(m.hexdigest,TestMetadata.S0hd)
-        r=open(TestMetadata.S0readme)
-        expected=r.read()
-        r.close()
-        self.assertEqual(m.as_markdown(),expected)
 
 if __name__ == '__main__':
     unittest.main()

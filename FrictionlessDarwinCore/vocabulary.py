@@ -1,12 +1,13 @@
 import csv
-
+import pkg_resources
 class DwCVocabulary:
-    default_path = '../data/fdwc_terms.csv'
+    terms_path = '../data/fdwc_terms.csv'
 
     def __init__(self,path=None):
         self.dwcTerms = dict()
         if path==None:
-            path=self.default_path
+            path = pkg_resources.resource_filename(__name__, DwCVocabulary.terms_path)
+        print(path)
         with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

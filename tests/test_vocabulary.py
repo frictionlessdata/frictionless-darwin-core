@@ -10,7 +10,7 @@ class TestVocabulary(unittest.TestCase):
         """
         dwcVoc = DwCVocabulary()
         self.assertIsNotNone(dwcVoc)
-        self.assertEqual(dwcVoc.size(), 123)
+        self.assertEqual(dwcVoc.size(), 185)
 
     def test_case_insensitiveness(self):
         """

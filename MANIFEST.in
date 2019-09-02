@@ -1,0 +1,4 @@
+include data/fdwc_terms.csv
+include README.md
+include LICENSE.md
+include testCases.md
