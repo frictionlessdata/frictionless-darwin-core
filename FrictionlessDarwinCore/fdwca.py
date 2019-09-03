@@ -6,11 +6,11 @@ from FrictionlessDarwinCore import DwCArchive
 @click.argument('dwca', type=str)
 @click.option('--json', type=click.Path())
 @click.option('--md', type=click.Path())
-def convert(dwca,json, md):
-        click.echo('dwca = %s' % dwca)
+def cli(dwca,json, md):
         da=DwCArchive(dwca)
         da.infer()
         if json == None and md == None:
+            click.echo('DwCA = %s' % dwca)
             da.save()
         if json != None:
             click.echo('-json = %s' % json)
@@ -20,4 +20,4 @@ def convert(dwca,json, md):
             da.to_markdown(md)
 
 if __name__ == '__main__':
-    convert()
+    cli()

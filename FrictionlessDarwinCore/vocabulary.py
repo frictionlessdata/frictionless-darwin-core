@@ -7,7 +7,6 @@ class DwCVocabulary:
         self.dwcTerms = dict()
         if path==None:
             path = os.path.join(os.path.dirname(__file__), 'fdwc_terms.csv')
-        print(path)
         with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:

@@ -2,7 +2,7 @@ from pathlib import Path
 from FrictionlessDarwinCore import *
 
 import requests
-import io
+import os
 import zipfile
 
 class DwCArchive:
@@ -11,6 +11,7 @@ class DwCArchive:
     def __init__(self, dwca_pathOrUrl):
         self.dwca=dwca_pathOrUrl
         if self.dwca.startswith('http'):
+            self.zippath = os.path.join(os.getcwd(), 'fdwc.zip')
             self.download()
         else:
             self.zippath = self.dwca
@@ -22,6 +23,7 @@ class DwCArchive:
         self.valid = self.metadata.valid and self.structure.valid
 
     def save(self):
+
         print('saving to '+ str(self.zippath))
         try:
             zf = zipfile.ZipFile(self.zippath, mode='a')
@@ -37,7 +39,6 @@ class DwCArchive:
     def download(self):
         #  download DwCArchive
         try:
-            self.zippath = Path('../tmp/fdwc.zip')
             response = requests.get(self.dwca)
             f=open(self.zippath, 'wb')
             f.write(response.content)
