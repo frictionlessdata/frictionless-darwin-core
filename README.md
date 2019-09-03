@@ -59,14 +59,15 @@ DarwinCore archives consist of:
 * eml.xml: **metadata** written in Ecological Metadata Language
 * meta.xml: the **structure** of the DarwinCore data files
 
-This conversion tool appends two files to the archive:
+This conversion tool appends two files to the archive, see diagram below:
 * **datapackage.json**: data package descriptor of the data files
-* readme.md: markdown, human readable, metadata
+* **readme.md**: markdown, human readable, metadata
+
 ![frictionless Darwin Core](fdwc.png)
 The tool can also generate these two files as separate outputs without touching the archive.
 
 ### DarwinCore terms
-Darwin Core is a very persmissive standard some recommandations but almost no constraining rules. This [table](https://github.com/andrejjh/FrictionlessDarwinCore/blob/master/data/fdwc_terms.csv) assigns Frictionless Data Package's type, format and constraints to every [Darwin Core term](https://dwc.tdwg.org/terms/).
+Darwin Core is a very persmissive standard some recommandations but almost no constraining rules. This [table](https://github.com/andrejjh/FrictionlessDarwinCore/blob/master/FrictionlessDarwinCore/fdwc_terms.csv) assigns Frictionless Data Package's type, format and constraints to every [Darwin Core term](https://dwc.tdwg.org/terms/).
 Values that do not comply with these **Frictionless DarwinCore rules** will automatically raise warnings.
 
 ### Test cases suite
