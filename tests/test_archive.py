@@ -15,7 +15,7 @@ class TestArchive(unittest.TestCase):
         self.assertTrue(dwca.valid)
         dwca.infer()
         self.assertTrue(dwca.valid)
-        dwca.save()
+        dwca.save('/Users/ahe/Data/S1.zip')
         self.assertTrue(dwca.valid)
 
 

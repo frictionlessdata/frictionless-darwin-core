@@ -29,19 +29,25 @@ pip install FrictionlessDarwinCore
 ```
 
 ### Running on CLI
-
 ```
-# convert from local archive
-fdwca myDwCA.zip
+fdwca --help
+Usage: fdwca [OPTIONS] DWCA OUTPATH
+
+Options:
+  -f, --format [json|md]  Output format
+  --help                  Show this message and exit.
+
+# convert from local DwC archive
+fdwca myDwC.zip myDP.zip
 
 # convert from URL (archive accessible on internet)
-fdwca https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37
+fdwca https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37 myDP.zip
 
-# only generate JSON descriptor (datapackage.json)
-fdwca myDwCA.zip --json datapackage.json
+# only generates JSON descriptor (datapackage.json)
+fdwca myDwC.zip -f json datapackage.json
 
-# only generate markdown human readable metadata (readme.md)
-fdwca myDwCA.zip --md readme.md
+# only generates markdown human readable metadata (readme.md)
+fdwca myDwC.zip -f md readme.md
 ```
 
 ## Documentation
@@ -64,6 +70,7 @@ This conversion tool appends two files to the archive, see diagram below:
 * **readme.md**: markdown, human readable, metadata
 
 ![frictionless Darwin Core](fdwc.png)
+
 The tool can also generate these two files as separate outputs without touching the archive.
 
 ### DarwinCore terms
