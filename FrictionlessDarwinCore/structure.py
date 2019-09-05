@@ -61,7 +61,8 @@ class DwCStructure:
         if ipr != None:
             licence={}
             title=ipr.findtext('./para/ulink/citetitle')
-            licence['name']=re.search('\((.+)\)',title).group(0)
+            if re.search('\((.+)\)',title):
+                licence['name']=re.search('\((.+)\)',title).group(0)
             licence['path']=ipr.find('./para/ulink').get('url')
             licence['title']=title
             licences.append(licence)
@@ -77,9 +78,20 @@ class DwCStructure:
         location= files.find('dwc:location', DwCStructure.ns)
         r['name']= location.text.split('.')[0]
         r['path']= location.text
-        r['format']= 'csv'
         r['profile']='tabular-data-resource'
-        r['encoding']='utf-8'
+        r['encoding']=mfile.get('encoding')
+        r['format']= 'csv'
+        dialect={}
+        dialect['csvddfVersion']=1.2
+        dialect['delimiter']='\t'
+        dialect['doubleQuote']=True
+        dialect['lineTerminator']='\n'
+        dialect['quoteChar']= None
+        dialect['skipInitialSpace']=True
+        dialect['header']= mfile.get('ignoreHeaderLines')=='1'
+        dialect['commentChar']='#'
+        r['dialect']=dialect
+
 
         schema= {}
         fields= []

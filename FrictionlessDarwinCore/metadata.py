@@ -37,6 +37,8 @@ class DwCMetadata:
                 hash.update(line.encode('utf-8'))
             self.hexdigest= hash.hexdigest()
             self._about()
+        except:
+            print(eml)
         finally:
             self.valid=True
         return self.as_markdown()

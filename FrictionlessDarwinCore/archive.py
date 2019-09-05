@@ -1,5 +1,6 @@
 from FrictionlessDarwinCore import *
 
+import sys
 import shutil
 import requests
 import zipfile
@@ -52,7 +53,9 @@ class DwCArchive:
                 self.metadata.convert()
                 self.structure.convert()
                 self.valid = self.metadata.valid and self.structure.valid
-        except:
+        except BaseException:
+                print(sys.exc_info())
+        else:
             print('load zip failed')
             self.valid=False;
         finally:
