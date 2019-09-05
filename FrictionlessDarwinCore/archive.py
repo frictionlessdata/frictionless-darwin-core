@@ -54,8 +54,7 @@ class DwCArchive:
                 self.structure.convert()
                 self.valid = self.metadata.valid and self.structure.valid
         except BaseException:
-                print(sys.exc_info())
-        else:
+            print(sys.exc_info())
             print('load zip failed')
             self.valid=False;
         finally:
