@@ -10,7 +10,7 @@ class TestVocabulary(unittest.TestCase):
         """
         dwcVoc = DwCVocabulary()
         self.assertIsNotNone(dwcVoc)
-        self.assertEqual(dwcVoc.size(), 185)
+        self.assertEqual(dwcVoc.size(), 189)
 
     def test_case_insensitiveness(self):
         """
@@ -18,11 +18,11 @@ class TestVocabulary(unittest.TestCase):
         """
         dwcVoc = DwCVocabulary()
 
-        countryCode1 = dwcVoc.term('countrycode')
+        countryCode1 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/countrycode')
         self.assertIsNotNone(countryCode1)
-        countryCode2 = dwcVoc.term('COUNTRYCODE')
+        countryCode2 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/COUNTRYCODE')
         self.assertIsNotNone(countryCode2)
-        countryCode3 = dwcVoc.term('CountryCode')
+        countryCode3 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/CountryCode')
         self.assertIsNotNone(countryCode3)
 
     def test_term(self):
@@ -30,10 +30,11 @@ class TestVocabulary(unittest.TestCase):
         Test that it can retrieve 'basisOfRecord' and 'countryCode'(valid DwC terms) but not 'Zorglub'(a fictional one)
         """
         dwcVoc = DwCVocabulary()
-        basisOfRecord = dwcVoc.term('basisOfRecord')
+        basisOfRecord = dwcVoc.term('http://rs.tdwg.org/dwc/terms/basisOfRecord')
         self.assertIsNotNone(basisOfRecord)
 
-        countryCode = dwcVoc.term('countryCode')
+        http: // purl.org / dc / terms / modified
+        countryCode = dwcVoc.term('http://rs.tdwg.org/dwc/terms/countryCode')
         self.assertIsNotNone(countryCode)
         self.assertTrue('class' in countryCode)
         self.assertTrue('type' in countryCode)
@@ -41,10 +42,10 @@ class TestVocabulary(unittest.TestCase):
         self.assertTrue('constraints' in countryCode)
         self.assertTrue('comment' in countryCode)
 
-        eventDate = dwcVoc.term('eventDate')
+        eventDate = dwcVoc.term('http://rs.tdwg.org/dwc/terms/eventDate')
         self.assertEqual(eventDate['type'],'string')
 
-        zorglub = dwcVoc.term('Zorglub')
+        zorglub = dwcVoc.term('http://rs.tdwg.org/dwc/terms/Zorglub')
         self.assertIsNone(zorglub)
 
 

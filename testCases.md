@@ -17,7 +17,7 @@ Event core + Occurrence extension [(DwcA)](https://ipt.biodiversity.be/archive.d
 ## Complex cases
 * C1: [Meise Botanic Garden Herbarium (BR)](https://www.gbif.org/dataset/b740eaa0-0679-41dc-acb7-990d562dfa37) by Botanic Garden Meise
 Occurrence core + multimedia extension, large file, 1 GB of uncompressed data with 1.7 Mio records [(DwCA)](http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/archive.do?r=botanical_collection)
-* C2:[Phytoplankton-BG Black Sea-15AK2007132](https://obis.org/dataset/923156b0-fa73-480b-a4b0-300379dce896) by OBIS
-Event core + 2 extensions (MeasurementOrFact & Occurrence) [(DwcA)](http://gp.sea.gov.ua:8082/ipt/resource?r=ak2007-00)
+* C2:[Phytoplankton-BG Black Sea-2007-2016](https://obis.org/dataset/d9a55b00-17d0-471b-bd49-6f97c8a08f1f) by OBIS
+Event core + 2 extensions (ExtendedMeasurementOrFact & Occurrence) [(DwcA)](http://gp.sea.gov.ua:8082/ipt/archive.do?r=phyto2016-37)
 * C3: [Empidoid flies from Cabo Verde (Diptera, Empidoidea, Dolichopodidae and Hybotidae) are not only composed of Old World tropical species](http://tb.plazi.org/GgServer/dwca/FFF2FF91FFD8FF8818250D59B410FF9B.zip) by PLAZI
 Checklist core + 7 extensions [(DwcA)](http://tb.plazi.org/GgServer/dwca/FFF2FF91FFD8FF8818250D59B410FF9B.zip)

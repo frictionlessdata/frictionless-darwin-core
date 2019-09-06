@@ -13,11 +13,12 @@ class DwCVocabulary:
                 termDict= dict()
                 for x,y in row.items():
                     termDict[x]=y
-                self.dwcTerms[row['name'].lower()]= termDict
+                self.dwcTerms[row['qualifiedName'].lower()]= termDict
 
     def term(self, name):
         if name.lower() in self.dwcTerms:
             return self.dwcTerms[name.lower()]
+
 
     def size(self):
             return len(self.dwcTerms)

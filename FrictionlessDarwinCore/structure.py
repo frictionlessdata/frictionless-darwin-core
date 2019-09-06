@@ -61,7 +61,8 @@ class DwCStructure:
         if ipr != None:
             licence={}
             title=ipr.findtext('./para/ulink/citetitle')
-            licence['name']=re.search('\((.+)\)',title).group(0)
+            if re.search('\((.+)\)',title):
+                licence['name']=re.search('\((.+)\)',title).group(0)
             licence['path']=ipr.find('./para/ulink').get('url')
             licence['title']=title
             licences.append(licence)
@@ -77,28 +78,46 @@ class DwCStructure:
         location= files.find('dwc:location', DwCStructure.ns)
         r['name']= location.text.split('.')[0]
         r['path']= location.text
-        r['format']= 'csv'
         r['profile']='tabular-data-resource'
-        r['encoding']='utf-8'
+        r['encoding']=mfile.get('encoding')
+        r['format']= 'csv'
+        dialect={}
+        dialect['csvddfVersion']=1.2
+        dialect['delimiter']='\t'
+        dialect['doubleQuote']=True
+        dialect['lineTerminator']='\n'
+        dialect['quoteChar']= "\""
+        dialect['skipInitialSpace']=True
+        dialect['header']= mfile.get('ignoreHeaderLines')=='1'
+        dialect['commentChar']='#'
+        r['dialect']=dialect
+
 
         schema= {}
         fields= []
-        field = {}
-        field['name']='id'
-        field['type'] = 'string'
-        field['format'] = 'default'
-        fields.append(field)
+        need_additional_id_field=True
+        for f in mfile.findall('dwc:field', DwCStructure.ns):
+            if f.get('index')=="0":
+                need_additional_id_field = False
+
+        if need_additional_id_field:
+            print('Adding addtional_id_field')
+            field = {}
+            field['name']='id'
+            field['type'] = 'string'
+            field['format'] = 'default'
+            fields.append(field)
 
         for f in mfile.findall('dwc:field', DwCStructure.ns):
             field= {}
             mterm=f.get('term')
-            fname=mterm.rsplit('/', 1)[1]
-            term = self.voc.term(fname)
-            field['name'] = fname
+            term = self.voc.term(mterm)
             if term == None:
-                print(fname, 'not a darwin core term.')
+                print(mterm, 'not a darwin core term.')
+                field['name'] = mterm.rsplit('/', 1)[1]
                 field['type'] = 'string'
             else:
+                field['name'] = term['name']
                 field['type'] = term['type']
                 if term['format'] != 'default':
                     field['format']= term['format']
