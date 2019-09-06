@@ -26,7 +26,7 @@ class DwCArchive:
             self.tf.write(response.content)
         except:
             print('HTTP download failed')
-            self.valid = False;
+            self.valid = False
         else:
             print('downloading ' + self.dwca + ' as ' + self.tf.name)
         return self.tf.name
