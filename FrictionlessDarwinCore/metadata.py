@@ -5,11 +5,11 @@ import xml.etree.ElementTree as ET
 class DwCMetadata:
 
     def __init__(self, eml):
-        self.allLines= []
-        self.emls= eml
+        self.allLines = []
+        self.emls = eml
 
     def convert(self):
-        self.valid=False
+        self.valid = False
         try:
             self.allLines = []
             root = ET.fromstring(self.emls)
