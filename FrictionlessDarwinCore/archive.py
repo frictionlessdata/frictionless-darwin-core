@@ -1,17 +1,18 @@
-from FrictionlessDarwinCore import *
-
 import sys
 import shutil
 import requests
 import zipfile
 import tempfile
 
+from FrictionlessDarwinCore import DwCVocabulary, DwCMetadata, DwCStructure
+
+
 class DwCArchive:
     voc = DwCVocabulary()
 
     def __init__(self, dwca_pathOrUrl):
-        self.valid=True
-        self.dwca=dwca_pathOrUrl
+        self.valid = True
+        self.dwca = dwca_pathOrUrl
         if self.dwca.startswith('http'):
             self.path = self.download()
         else:
@@ -25,7 +26,7 @@ class DwCArchive:
             self.tf.write(response.content)
         except:
             print('HTTP download failed')
-            self.valid=False;
+            self.valid = False;
         else:
             print('downloading ' + self.dwca + ' as ' + self.tf.name)
         return self.tf.name
@@ -34,20 +35,20 @@ class DwCArchive:
         if zipfile.is_zipfile(self.path):
             self.load()
         else:
-            self.valid=False
+            self.valid = False
             print('dwca is not a zipfile')
 
     def load(self):
         try:
             zf = zipfile.ZipFile(self.path, mode='r')
             for info in zf.infolist():
-                if info.filename=='eml.xml':
-                    eml=zf.read(info.filename).decode()
-                if info.filename=='metadata.xml':
-                    eml=zf.read(info.filename).decode()
-                if info.filename=='meta.xml':
-                    meta=zf.read(info.filename).decode()
-            if eml !='' and meta !='':
+                if info.filename == 'eml.xml':
+                    eml = zf.read(info.filename).decode()
+                if info.filename == 'metadata.xml':
+                    eml = zf.read(info.filename).decode()
+                if info.filename == 'meta.xml':
+                    meta = zf.read(info.filename).decode()
+            if eml != '' and meta != '':
                 self.metadata = DwCMetadata(eml)
                 self.structure = DwCStructure(meta, eml)
                 self.metadata.convert()
@@ -56,7 +57,7 @@ class DwCArchive:
         except BaseException:
             print(sys.exc_info())
             print('load zip failed')
-            self.valid=False;
+            self.valid = False
         finally:
             zf.close()
 
@@ -80,7 +81,7 @@ class DwCArchive:
 
     def to_json(self, output):
         try:
-            o=open(output, 'w')
+            o = open(output, 'w')
             o.write(self.structure.as_json())
         except:
             print('writing json failed')
@@ -91,7 +92,7 @@ class DwCArchive:
 
     def to_markdown(self, output):
         try:
-            o=open(output, 'w')
+            o = open(output, 'w')
             o.write(self.metadata.as_markdown())
         except:
             print('writing markdown failed')

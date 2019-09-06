@@ -33,7 +33,7 @@ class TestVocabulary(unittest.TestCase):
         basisOfRecord = dwcVoc.term('http://rs.tdwg.org/dwc/terms/basisOfRecord')
         self.assertIsNotNone(basisOfRecord)
 
-        http: // purl.org / dc / terms / modified
+        #http: // purl.org / dc / terms / modified
         countryCode = dwcVoc.term('http://rs.tdwg.org/dwc/terms/countryCode')
         self.assertIsNotNone(countryCode)
         self.assertTrue('class' in countryCode)
