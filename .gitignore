@@ -4,3 +4,6 @@
 __pycache__
 local.py
 tmp
+build/
+dist/
+*.egg-info/
