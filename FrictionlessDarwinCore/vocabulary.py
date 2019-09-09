@@ -4,21 +4,33 @@ import os
 class DwCVocabulary:
 
     def __init__(self,path=None):
-        self.dwcTerms = dict()
+        self.dwc_dictionary = dict()
         if path==None:
             path = os.path.join(os.path.dirname(__file__), 'fdwc_terms.csv')
         with open(path, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                termDict= dict()
+                namespace= row['namespace'].lower()
+                if namespace in self.dwc_dictionary:
+                    ns = self.dwc_dictionary[namespace]
+                else:
+                    ns= dict()
+                    self.dwc_dictionary[row['namespace'].lower()]=ns
+                term= dict()
                 for x,y in row.items():
-                    termDict[x]=y
-                self.dwcTerms[row['qualifiedName'].lower()]= termDict
+                    term[x]=y
+                ns[row['name'].lower()]= term
 
-    def term(self, name):
-        if name.lower() in self.dwcTerms:
-            return self.dwcTerms[name.lower()]
-
+    def term(self, qualified_name):
+        tokens= qualified_name.lower().rsplit("/",1)
+        if tokens[0] in self.dwc_dictionary:
+            ns=self.dwc_dictionary[tokens[0]]
+            if tokens[1] in ns:
+                return ns[tokens[1]]
+        return None
 
     def size(self):
-            return len(self.dwcTerms)
+        result=0
+        for k,ns in self.dwc_dictionary.items():
+            result = result + len(ns)
+        return result
