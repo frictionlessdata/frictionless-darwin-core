@@ -4,8 +4,8 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
 ## Features
 * **datapackage.json**: Ensure your DarwinCore archive complies with [Frictionless specifications](https://frictionlessdata.io/specs/)
 * **README.md**: Add human readable metadata from [EML](https://en.wikipedia.org/wiki/Ecological_Metadata_Language)
-* **Support all standards DarwinCore terms**
-* **Fields constraints**: Enable further data validation, such as [goodtables](https://github.com/frictionlessdata/goodtables-py)
+* **Support all standards [DarwinCore terms](#darwincore-terms)**
+* **Fields constraints**: Enable further data validation, with [goodtables](https://github.com/frictionlessdata/goodtables-py)
 * **URL**: Accept DarwinCore Archive from local path or URL
 * **Command line interface**
 
@@ -41,13 +41,13 @@ Options:
 fdwca myDwC.zip myDP.zip
 
 # convert from URL (archive accessible on internet)
-fdwca https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles&v=9.37 myDP.zip
+fdwca https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles S1dp.zip
 
 # only generates JSON descriptor (datapackage.json)
-fdwca myDwC.zip -f json datapackage.json
+fdwca -f json https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles datapackage.json
 
 # only generates markdown human readable metadata (readme.md)
-fdwca myDwC.zip -f md readme.md
+fdwca -f md https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles readme.md
 ```
 
 ## Documentation
