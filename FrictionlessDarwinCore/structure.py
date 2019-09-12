@@ -83,10 +83,17 @@ class DwCStructure:
         r['format']= 'csv'
         dialect={}
         dialect['csvddfVersion']=1.2
-        dialect['delimiter']='\t'
+        dialect['delimiter']=mfile.get('fieldsTerminatedBy')
         dialect['doubleQuote']=True
-        dialect['lineTerminator']='\n'
-        dialect['quoteChar']= "\""
+        lt=mfile.get('linesTerminatedBy')
+        if len(lt)==2 and lt[1]=='\\':
+            if lt[2]=='n':
+                dialect['lineTerminator']='\n'
+            if lt[2]=='r':
+               dialect['lineTerminator'] = '\r'
+        else:
+            dialect['lineTerminator'] = lt
+        dialect['quoteChar']= mfile.get('fieldsEnclosedBy')
         dialect['skipInitialSpace']=True
         dialect['header']= mfile.get('ignoreHeaderLines')=='1'
         dialect['commentChar']='#'
