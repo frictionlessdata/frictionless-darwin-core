@@ -1,6 +1,6 @@
 import unittest
-
 from FrictionlessDarwinCore import DwCVocabulary
+
 
 class TestVocabulary(unittest.TestCase):
 
@@ -8,43 +8,43 @@ class TestVocabulary(unittest.TestCase):
         """
         Test that it can load DwC vocabulary from a csv file
         """
-        dwcVoc = DwCVocabulary()
-        self.assertIsNotNone(dwcVoc)
-        self.assertEqual(dwcVoc.size(), 232)
+        v = DwCVocabulary()
+        self.assertIsNotNone(v)
+        self.assertEqual(v.size(), 232)
 
     def test_case_insensitiveness(self):
         """
         Test that it can retrieve 'countrycode', 'COUNTRYCODE' or 'CountryCode'
         """
-        dwcVoc = DwCVocabulary()
+        v = DwCVocabulary()
 
-        countryCode1 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/countrycode')
-        self.assertIsNotNone(countryCode1)
-        countryCode2 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/COUNTRYCODE')
-        self.assertIsNotNone(countryCode2)
-        countryCode3 = dwcVoc.term('http://rs.tdwg.org/dwc/terms/CountryCode')
-        self.assertIsNotNone(countryCode3)
+        country_code1 = v.term('http://rs.tdwg.org/dwc/terms/countrycode')
+        self.assertIsNotNone(country_code1)
+        country_code2 = v.term('http://rs.tdwg.org/dwc/terms/COUNTRYCODE')
+        self.assertIsNotNone(country_code2)
+        country_code3 = v.term('http://rs.tdwg.org/dwc/terms/CountryCode')
+        self.assertIsNotNone(country_code3)
 
     def test_term(self):
         """
         Test that it can retrieve 'basisOfRecord' and 'countryCode'(valid DwC terms) but not 'Zorglub'(a fictional one)
         """
-        dwcVoc = DwCVocabulary()
-        basisOfRecord = dwcVoc.term('http://rs.tdwg.org/dwc/terms/basisOfRecord')
-        self.assertIsNotNone(basisOfRecord)
+        v = DwCVocabulary()
+        basis_of_record = v.term('http://rs.tdwg.org/dwc/terms/basisOfRecord')
+        self.assertIsNotNone(basis_of_record)
 
-        countryCode = dwcVoc.term('http://rs.tdwg.org/dwc/terms/countryCode')
-        self.assertIsNotNone(countryCode)
-        self.assertTrue('class' in countryCode)
-        self.assertTrue('type' in countryCode)
-        self.assertTrue('format' in countryCode)
-        self.assertTrue('constraints' in countryCode)
-        self.assertTrue('comment' in countryCode)
+        country_code = v.term('http://rs.tdwg.org/dwc/terms/countryCode')
+        self.assertIsNotNone(country_code)
+        self.assertTrue('class' in country_code)
+        self.assertTrue('type' in country_code)
+        self.assertTrue('format' in country_code)
+        self.assertTrue('constraints' in country_code)
+        self.assertTrue('comment' in country_code)
 
-        eventDate = dwcVoc.term('http://rs.tdwg.org/dwc/terms/eventDate')
-        self.assertEqual(eventDate['type'],'string')
+        event_date = v.term('http://rs.tdwg.org/dwc/terms/eventDate')
+        self.assertEqual(event_date['type'],'string')
 
-        zorglub = dwcVoc.term('http://rs.tdwg.org/dwc/terms/Zorglub')
+        zorglub = v.term('http://rs.tdwg.org/dwc/terms/Zorglub')
         self.assertIsNone(zorglub)
 
 
