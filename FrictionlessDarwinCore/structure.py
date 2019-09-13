@@ -70,6 +70,16 @@ class DwCStructure:
 
         self._add('sources', sources)
 
+    def _delimiter(self, delimiterString):
+        switcher = {
+            "":'"',
+            "\\n": '\n',
+            "\\r": '\r',
+            "\\r\\n": '\r\n',
+            "\\t": '\t',
+        }
+        return switcher.get(delimiterString, delimiterString)
+
     def _toresource(self, mfile, core):
         if mfile is None:
             return
@@ -83,22 +93,14 @@ class DwCStructure:
         r['format']= 'csv'
         dialect={}
         dialect['csvddfVersion']=1.2
-        dialect['delimiter']=mfile.get('fieldsTerminatedBy')
+        dialect['delimiter']= self._delimiter(mfile.get('fieldsTerminatedBy'))
         dialect['doubleQuote']=True
-        lt=mfile.get('linesTerminatedBy')
-        if len(lt)==2 and lt[1]=='\\':
-            if lt[2]=='n':
-                dialect['lineTerminator']='\n'
-            if lt[2]=='r':
-               dialect['lineTerminator'] = '\r'
-        else:
-            dialect['lineTerminator'] = lt
-        dialect['quoteChar']= mfile.get('fieldsEnclosedBy')
+        dialect['lineTerminator']= self._delimiter(mfile.get('linesTerminatedBy'))
+        dialect['quoteChar']= self._delimiter(mfile.get('fieldsEnclosedBy'))
         dialect['skipInitialSpace']=True
         dialect['header']= mfile.get('ignoreHeaderLines')=='1'
         dialect['commentChar']='#'
         r['dialect']=dialect
-
 
         schema= {}
         fields= []
@@ -120,12 +122,13 @@ class DwCStructure:
             mterm=f.get('term')
             term = self.voc.term(mterm)
             if term == None:
-                print(mterm, 'not a darwin core term.')
+                print(mterm, 'unkwown Darwin Core term.')
                 field['name'] = mterm.rsplit('/', 1)[1]
                 field['type'] = 'string'
             else:
                 field['name'] = term['name']
                 field['type'] = term['type']
+                field['description'] = mterm
                 if term['format'] != 'default':
                     field['format']= term['format']
                 if term['constraints'] != '':
