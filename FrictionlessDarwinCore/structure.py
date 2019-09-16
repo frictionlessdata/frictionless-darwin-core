@@ -13,6 +13,7 @@ class DwCStructure:
         self.meta = meta
         self.descriptor = {}
         self.corename = ''
+        self.pkey_name = 'id'
         self.valid = False
 
     def convert(self):
@@ -106,15 +107,29 @@ class DwCStructure:
 
         schema = {}
         fields = []
+
+        index_id='0'
+        index_name = 'id'
+
+        if core:
+            index = mfile.find('dwc:id', DwCStructure.ns)
+        else:
+            index = mfile.find('dwc:coreid', DwCStructure.ns)
+        if index is not None:
+            index_id = index.get('index')
+
         need_additional_id_field = True
         for f in mfile.findall('dwc:field', DwCStructure.ns):
-            if f.get('index') == "0":
+            if f.get('index') == index_id:
                 need_additional_id_field = False
+                index_name = f.get('term').rsplit('/', 1)[1]
+                if core:
+                    self.pkey_name = index_name
 
         if need_additional_id_field:
-            print('Adding addtional_id_field')
+            print('Adding additional_id_field')
             field = {}
-            field['name'] ='id'
+            field['name'] = index_name
             field['type'] = 'string'
             field['format'] = 'default'
             fields.append(field)
@@ -139,14 +154,15 @@ class DwCStructure:
         schema['fields'] = fields
         r['schema'] = schema
         if core:
-            r['primaryKey'] ='id'
+            r['primaryKey'] = self.pkey_name
         else:
             fkeys = []
             fkey = {}
-            fkey['fields'] ='id'
+
+            fkey['fields'] = index_name
             ref = {}
             ref['resource'] = self.corename
-            ref['fields'] ='id'
+            ref['fields'] = self.pkey_name
             fkey['reference'] = ref
             fkeys.append(fkey)
             r['foreignKeys'] = fkeys
