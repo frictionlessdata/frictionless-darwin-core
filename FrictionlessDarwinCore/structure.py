@@ -32,16 +32,14 @@ class DwCStructure:
             for extension in archive.findall('dwc:extension', DwCStructure.ns):
                 resources.append(self._toresource(extension, False))
             self._add('resources', resources)
-        self.valid=True
+        self.valid = True
         return self.as_json()
-
 
     def as_json(self):
         return json.dumps(self.descriptor)
 
     def _add(self, key, value):
-        self.descriptor[key]=value
-
+        self.descriptor[key] = value
 
     def _addheader(self, dataset):
         licences = []
@@ -49,39 +47,37 @@ class DwCStructure:
         for ai in dataset.findall('./alternateIdentifier'):
             m = re.search(r'(?<==)\w+', ai.text)
             if m is not None:
-                self._add('name',m.group(0))
-            if re.search('^[0-9a-f\-]*$',ai.text):
-                self._add('id',ai.text)
+                self._add('name', m.group(0))
+            if re.search('^[0-9a-f\-]*$', ai.text):
+                self._add('id', ai.text)
             if re.search('^https?://', ai.text):
-                source = {}
-                source['title'] = 'GBIF IPT'
-                source['path'] = ai.text
+                source = {'title': 'GBIF IPT', 'path': ai.text}
                 sources.append(source)
         self._add('title', dataset.findtext('./title'))
-        self._add('profile','tabular-data-package')
+        self._add('profile', 'tabular-data-package')
         ipr = dataset.find('./intellectualRights')
         if ipr is not None:
-            licence={}
-            title=ipr.findtext('./para/ulink/citetitle')
-            l = re.search('\((.+)\)',title)
-            if l is not None:
-                licence['name']=l.group(0)
-            licence['path']=ipr.find('./para/ulink').get('url')
-            licence['title']=title
+            licence = {}
+            title = ipr.findtext('./para/ulink/citetitle')
+            if title is not None:
+                name = re.search('\((.+)\)', title)
+                if name is not None:
+                    licence['name'] = name.group(0)
+                licence['title'] = title
+            licence['path'] = ipr.find('./para/ulink').get('url')
             licences.append(licence)
         self._add('licences', licences)
 
         self._add('sources', sources)
 
-    def _delimiter(self, delimiterString):
+    def _delimiter(self, delimiter_string):
         switcher = {
-            "":'"',
             "\\n": '\n',
             "\\r": '\r',
             "\\r\\n": '\r\n',
             "\\t": '\t',
         }
-        return switcher.get(delimiterString, delimiterString)
+        return switcher.get(delimiter_string, delimiter_string)
 
     def _toresource(self, mfile, core):
         if mfile is None:
@@ -91,18 +87,14 @@ class DwCStructure:
         location = files.find('dwc:location', DwCStructure.ns)
         r['name'] = location.text.split('.')[0]
         r['path'] = location.text
+        r['description'] = mfile.get('rowType')
         r['profile'] = 'tabular-data-resource'
         r['encoding'] = mfile.get('encoding')
         r['format'] = 'csv'
-        dialect = {}
-        dialect['csvddfVersion'] = 1.2
-        dialect['delimiter'] = self._delimiter(mfile.get('fieldsTerminatedBy'))
-        dialect['doubleQuote'] = True
-        dialect['lineTerminator'] = self._delimiter(mfile.get('linesTerminatedBy'))
-        dialect['quoteChar'] = self._delimiter(mfile.get('fieldsEnclosedBy'))
-        dialect['skipInitialSpace'] = True
-        dialect['header'] = mfile.get('ignoreHeaderLines')=='1'
-        dialect['commentChar'] = '#'
+        dialect = {'csvddfVersion': 1.2, 'delimiter': self._delimiter(mfile.get('fieldsTerminatedBy')),
+                   'doubleQuote': True, 'lineTerminator': self._delimiter(mfile.get('linesTerminatedBy')),
+                   'quoteChar': self._delimiter(mfile.get('fieldsEnclosedBy')), 'skipInitialSpace': True,
+                   'header': mfile.get('ignoreHeaderLines') == '1', 'commentChar': '#'}
         r['dialect'] = dialect
 
         schema = {}
@@ -128,10 +120,7 @@ class DwCStructure:
 
         if need_additional_id_field:
             print('Adding additional_id_field')
-            field = {}
-            field['name'] = index_name
-            field['type'] = 'string'
-            field['format'] = 'default'
+            field = {'name': index_name, 'type': 'string', 'format': 'default'}
             fields.append(field)
 
         for f in mfile.findall('dwc:field', DwCStructure.ns):
@@ -139,7 +128,7 @@ class DwCStructure:
             mterm = f.get('term')
             term = self.voc.term(mterm)
             if term is None:
-                print(mterm, 'unkwown Darwin Core term.')
+                print(mterm, 'unknown Darwin Core term.')
                 field['name'] = mterm.rsplit('/', 1)[1]
                 field['type'] = 'string'
             else:

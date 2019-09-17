@@ -8,7 +8,7 @@ class TestStructure(unittest.TestCase):
     S1eml = '../data/S1/eml.xml'
     S1meta = '../data/S1/meta.xml'
     S1url = 'http://ipt.ala.org.au/eml.do?r=global'
-    S1hd = '95a9ec9c7a64fb61ac5e9014b2e45029'
+    S1hd = '55a798c68cefaaaded739b6bee4c3fd9'
 
     def test_SO(self):
         """
