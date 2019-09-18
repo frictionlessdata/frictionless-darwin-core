@@ -14,6 +14,7 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
 * [Getting Started](#getting-started)
     * [Installing](#installing)
     * [Running on CLI](#running-on-cli)
+    * [Python use](#python-use)
 * [Documentation](#documentation)
     * [Rationale](#rationale)
     * [What it does?](#what-it-does)
@@ -29,7 +30,7 @@ pip install FrictionlessDarwinCore
 ```
 
 ### Running on CLI
-```
+```sh
 fdwca --help
 Usage: fdwca [OPTIONS] DWCA OUTPATH
 
@@ -48,6 +49,24 @@ fdwca -f json https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles 
 
 # only generates markdown human readable metadata (readme.md)
 fdwca -f md https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles readme.md
+```
+
+### Python use
+Alternatively, you can use DwCArchive Python object like this:
+```python
+from FrictionlessDarwinCore import DwCArchive
+
+# load DarwinCore archive from URL
+da = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles')
+# infer Data Package structure from DarwinCore files
+da.infer()
+if da.valid():
+  # save it as Data Package locally
+  da.save('BeetlesDP.zip')
+  # ... or generates separate JSON descriptor
+  da.to_json('datpackage.json')
+  # ... or generates separate markdown human readable metadata
+  da.to_markdown('readme.md')
 ```
 
 ## Documentation
@@ -69,8 +88,36 @@ This conversion tool appends two files to the archive, see diagram below:
 * **datapackage.json**: data package descriptor of the data files
 * **readme.md**: markdown, human readable, metadata
 
-![frictionless Darwin Core](fdwc.png)
-
+<pre>┌─────────────────────────────────────────────────────────────────┐
+│   ┌──────────────────────────────────────────────────────────┐  │
+│   │DarwinCore Archive                                        │  │
+│   │                                                          │  │
+│   │                                ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │                           ┌ ─ ─    Extension 1    │      │  │
+│   │                                └ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │    ┌──────────────────┐   │    ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │    │    Core file     │─ ─ ─ ─     Extension 2    │      │  │
+│   │    └──────────────────┘   │    └ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │                                                          │  │
+│   │                           │                              │  │
+│   │                                ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │                           └ ─ ─    Extension n    │      │  │
+│   │                                └ ─ ─ ─ ─ ─ ─ ─ ─ ─       │  │
+│   │                                                          │  │
+│   │   ┌──────────────────┐         ┌──────────────────┐      │  │
+│   │   │     meta.xml     │         │     eml.xml      │      │  │
+│   │   └──────────────────┘         └──────────────────┘      │  │
+│   │             │                            │               │  │
+│   └─────────────┼────────────────────────────┼───────────────┘  │
+│                 ▼                            ▼                  │
+│       ┌──────────────────┐         ┌──────────────────┐         │
+│       │ datapackage.json │         │    readme.md     │         │
+│       └──────────────────┘         └──────────────────┘         │
+│                                                                 │
+│                                           FrictionlessDarwinCore│
+│                                                  (=Data Package)│
+└─────────────────────────────────────────────────────────────────┘
+</pre>
 The tool can also generate these two files as separate outputs without touching the archive.
 
 ### DarwinCore terms
