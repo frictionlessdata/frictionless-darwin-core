@@ -60,7 +60,7 @@ from FrictionlessDarwinCore import DwCArchive
 da = DwCArchive('https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles')
 # infer Data Package structure from DarwinCore files
 da.infer()
-if da.valid():
+if da.valid:
   # save it as Data Package locally
   da.save('BeetlesDP.zip')
   # ... or generates separate JSON descriptor
