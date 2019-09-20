@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:dc="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:md="http://www.pangaea.de/MetaData" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml.xsd" system="http://www.pangaea.de" scope="system" xml:lang="eng" packageId="https://doi.org/10.1594/PANGAEA.96900">
+  <dataset>
+    <alternateIdentifier>https://doi.org/10.1594/PANGAEA.96900</alternateIdentifier>
+    <alternateIdentifier>dataset96900</alternateIdentifier>
+    <title xml:lang="eng">The Brown University Foraminiferal Data Base (BFD)</title>
+    <creator>
+      <individualName>
+        <givenName>Warren L</givenName>
+        <surName>Prell</surName>
+      </individualName>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>A</givenName>
+        <surName>Martin</surName>
+      </individualName>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>James L</givenName>
+        <surName>Cullen</surName>
+      </individualName>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>M</givenName>
+        <surName>Trend</surName>
+      </individualName>
+    </creator>
+    <metadataProvider>
+      <organizationName>PANGAEA - Data Publisher for Earth &amp; Environmental Science</organizationName>
+      <electronicMailAddress>info@pangaea.de</electronicMailAddress>
+      <onlineUrl>https://www.pangaea.de</onlineUrl>
+    </metadataProvider>
+    <pubDate>1999</pubDate>
+    <language>eng</language>
+    <abstract>
+      <para/>
+    </abstract>
+    <intellectualRights>
+      <para>
+					This work is licensed under a 
+						<ulink url="https://creativecommons.org/licenses/by/3.0/"><citetitle>Creative Commons Attribution 3.0 Unported</citetitle></ulink></para>
+    </intellectualRights>
+    <distribution>
+      <online>
+        <url function="metadata">https://doi.org/10.1594/PANGAEA.96900</url>
+      </online>
+    </distribution>
+    <coverage>
+      <geographicCoverage>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-179.7</westBoundingCoordinate>
+          <eastBoundingCoordinate>178.637</eastBoundingCoordinate>
+          <northBoundingCoordinate>78.833</northBoundingCoordinate>
+          <southBoundingCoordinate>-63.283</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+    </coverage>
+    <contact>
+      <organizationName>PANGAEA - Data Publisher for Earth &amp;  Environmental Science</organizationName>
+      <electronicMailAddress>info@pangaea.de</electronicMailAddress>
+      <onlineUrl>http://www.pangaea.de</onlineUrl>
+    </contact>
+  </dataset>
+</eml:eml>

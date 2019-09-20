@@ -1,0 +1,274 @@
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+         xmlns:dc="http://purl.org/dc/terms/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml.xsd"
+         packageId="b740eaa0-0679-41dc-acb7-990d562dfa37/v1.9" system="http://gbif.org" scope="system"
+         xml:lang="eng">
+
+<dataset>
+  <alternateIdentifier>b740eaa0-0679-41dc-acb7-990d562dfa37</alternateIdentifier>
+  <alternateIdentifier>http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/resource?r=botanical_collection</alternateIdentifier>
+  <title xml:lang="eng">Meise Botanic Garden Herbarium (BR)</title>
+      <creator>
+    <individualName>
+      <surName>Meise Botanic Garden</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Garden</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+      </creator>
+      <metadataProvider>
+    <individualName>
+        <givenName>Mathias</givenName>
+      <surName>Dillen</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Researcher</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>mathias.dillen@plantentuinmeise.be</electronicMailAddress>
+      </metadataProvider>
+      <associatedParty>
+    <individualName>
+        <givenName>Ann</givenName>
+      <surName>Bogaerts</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Scientific Manager of the Herbarium</positionName>
+    <address>
+        <deliveryPoint>Nieuwelaan 38</deliveryPoint>
+        <city>Meise</city>
+        <postalCode>1860</postalCode>
+        <country>BE</country>
+    </address>
+    <phone>+3222600957</phone>
+    <electronicMailAddress>ann.bogaerts@plantentuinmeise.be</electronicMailAddress>
+    <onlineUrl>http://www.plantentuinmeise.be</onlineUrl>
+    <role>curator</role>
+      </associatedParty>
+      <associatedParty>
+    <individualName>
+        <givenName>Piet</givenName>
+      <surName>Stoffelen</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Director of Collections</positionName>
+    <address>
+        <deliveryPoint>Nieuwelaan 38</deliveryPoint>
+        <city>Meise</city>
+        <postalCode>1860</postalCode>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>piet.stoffelen@plantentuinmeise.be</electronicMailAddress>
+    <onlineUrl>http://www.plantentuinmeise.be</onlineUrl>
+          <userId directory="http://orcid.org/">0000-0003-2547-0415</userId>
+    <role>curator</role>
+      </associatedParty>
+      <associatedParty>
+    <individualName>
+        <givenName>Henry</givenName>
+      <surName>Engledow</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Database Manager</positionName>
+    <address>
+        <deliveryPoint>Nieuwelaan 38</deliveryPoint>
+        <city>Meise</city>
+        <postalCode>1860</postalCode>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>henry.engledow@plantentuinmeise.be</electronicMailAddress>
+    <onlineUrl>http://www.plantentuinmeise.be</onlineUrl>
+    <role>editor</role>
+      </associatedParty>
+      <associatedParty>
+    <individualName>
+        <givenName>Sofie</givenName>
+      <surName>De Smedt</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Digitization manager</positionName>
+    <address>
+        <deliveryPoint>Nieuwelaan 38</deliveryPoint>
+        <city>Meise</city>
+        <postalCode>1860</postalCode>
+        <country>BE</country>
+    </address>
+    <electronicMailAddress>sofie.desmedt@plantentuinmeise.be</electronicMailAddress>
+    <onlineUrl>http://www.plantentuinmeise.be</onlineUrl>
+    <role>curator</role>
+      </associatedParty>
+  <pubDate>
+      2019-05-23
+  </pubDate>
+  <language>eng</language>
+  <abstract>
+    <para>Meise Botanic Garden was founded in the early 18th century and is one of the 15 largest botanic gardens, covering 92ha and containing 4 million preserved and living specimens. The collection has a global scope with a focus on Central Africa, Belgium, and South-West Europe. There are also important historical herbarium collections from Latin America, India and Australia. Notable collectors who have contributed to the herbarium, include Van Heurck, Von Martius, Sieber-von Reichenbach and Crepin. A wide range of taxonomic groups are covered including: vascular plants, lichens, mosses, liverworts, fungi, myxomycetes and algae.</para>
+  </abstract>
+      <keywordSet>
+            <keyword>Occurrence</keyword>
+            <keyword>Herbarium</keyword>
+            <keyword>Plant</keyword>
+            <keyword>Myxomycetes</keyword>
+            <keyword>Algae</keyword>
+            <keyword></keyword>
+        <keywordThesaurus>GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml</keywordThesaurus>
+      </keywordSet>
+      <keywordSet>
+            <keyword>Specimen</keyword>
+        <keywordThesaurus>GBIF Dataset Subtype Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_subtype.xml</keywordThesaurus>
+      </keywordSet>
+  <intellectualRights>
+    <para>This work is licensed under a <ulink url="http://creativecommons.org/licenses/by/4.0/legalcode"><citetitle>Creative Commons Attribution (CC-BY) 4.0 License</citetitle></ulink>.</para>
+  </intellectualRights>
+  <distribution scope="document">
+    <online>
+      <url function="information">http://www.botanicalcollections.be/</url>
+    </online>
+  </distribution>
+  <coverage>
+      <geographicCoverage>
+          <geographicDescription>Global</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-180</westBoundingCoordinate>
+          <eastBoundingCoordinate>180</eastBoundingCoordinate>
+          <northBoundingCoordinate>90</northBoundingCoordinate>
+          <southBoundingCoordinate>-90</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+          <temporalCoverage>
+              <rangeOfDates>
+                  <beginDate>
+                    <calendarDate>1727-01-01</calendarDate>
+                  </beginDate>
+                <endDate>
+                  <calendarDate>2018-04-30</calendarDate>
+                </endDate>
+              </rangeOfDates>
+          </temporalCoverage>
+          <taxonomicCoverage>
+              <taxonomicClassification>
+                  <taxonRankName>kingdom</taxonRankName>
+                <taxonRankValue>Plantae</taxonRankValue>
+                  <commonName>plants</commonName>
+              </taxonomicClassification>
+              <taxonomicClassification>
+                  <taxonRankName>kingdom</taxonRankName>
+                <taxonRankValue>Fungi</taxonRankValue>
+                  <commonName>fungi</commonName>
+              </taxonomicClassification>
+              <taxonomicClassification>
+                  <taxonRankName>kingdom</taxonRankName>
+                <taxonRankValue>Chromista</taxonRankValue>
+              </taxonomicClassification>
+              <taxonomicClassification>
+                  <taxonRankName>kingdom</taxonRankName>
+                <taxonRankValue>Protozoa</taxonRankValue>
+              </taxonomicClassification>
+          </taxonomicCoverage>
+  </coverage>
+  <maintenance>
+    <description>
+      <para>monthly updates</para>
+    </description>
+    <maintenanceUpdateFrequency>unkown</maintenanceUpdateFrequency>
+  </maintenance>
+
+      <contact>
+    <individualName>
+        <givenName>Mathias</givenName>
+      <surName>Dillen</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Researcher</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+      </contact>
+      <contact>
+    <individualName>
+        <givenName>Quentin</givenName>
+      <surName>Groom</surName>
+    </individualName>
+    <organizationName>Meise Botanic Garden</organizationName>
+    <positionName>Researcher</positionName>
+    <address>
+        <country>BE</country>
+    </address>
+      </contact>
+  <methods>
+        <methodStep>
+          <description>
+            <para></para>
+          </description>
+        </methodStep>
+  </methods>
+  <project >
+    <title>Digitale Ontsluiting Erfgoedcollecties</title>
+      <personnel>
+        <individualName>
+            <givenName>Ann</givenName>
+          <surName>Bogaerts</surName>
+        </individualName>
+        <role>curator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+            <givenName>Sofie</givenName>
+          <surName>De Smedt</surName>
+        </individualName>
+        <role>pointOfContact</role>
+      </personnel>
+      <personnel>
+        <individualName>
+            <givenName>Henry</givenName>
+          <surName>Engledow</surName>
+        </individualName>
+        <role>editor</role>
+      </personnel>
+      <personnel>
+        <individualName>
+            <givenName>Quentin</givenName>
+          <surName>Groom</surName>
+        </individualName>
+              <userId directory="http://orcid.org/">0000-0002-0596-5376</userId>
+        <role>publisher</role>
+      </personnel>
+      <personnel>
+        <individualName>
+            <givenName>Paul</givenName>
+          <surName>Van Wambeke</surName>
+        </individualName>
+        <role>programmer</role>
+      </personnel>
+      <personnel>
+        <individualName>
+            <givenName>Marc</givenName>
+          <surName>Sosef</surName>
+        </individualName>
+              <userId directory="http://orcid.org/">0000-0002-6997-5813</userId>
+        <role>user</role>
+      </personnel>
+      <abstract>
+        <para>Digitization of the Meise Botanic Garden Herbarium</para>
+      </abstract>
+      <funding>
+        <para>The Flemish Government</para>
+      </funding>
+  </project>
+</dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+          <dateStamp>2018-04-05T09:14:23.573+02:00</dateStamp>
+          <hierarchyLevel>dataset</hierarchyLevel>
+            <citation>Meise Botanic Garden (2018) Meise Botanic Garden Herbarium (BR). v1. Dataset/Occurrence. http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/resource?r=botanical_collection&amp;amp;v=1.0</citation>
+          <resourceLogoUrl>http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/logo.do?r=botanical_collection</resourceLogoUrl>
+          <dc:replaces>b740eaa0-0679-41dc-acb7-990d562dfa37/v1.9.xml</dc:replaces>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
