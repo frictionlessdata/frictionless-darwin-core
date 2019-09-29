@@ -1,9 +1,12 @@
 from FrictionlessDarwinCore import *
+from pathlib import Path
+
 import sys
 import shutil
 import requests
 import zipfile
 import tempfile
+
 
 
 class DwCArchive:
@@ -46,10 +49,10 @@ class DwCArchive:
         zf = zipfile.ZipFile(self.path, mode='r')
         try:
             for info in zf.infolist():
-                fname=info.filename.rsplit("/",1)[1]
-                if fname in ('eml.xml','metadata.xml'):
+                p=Path(info.filename)
+                if p.name in ('eml.xml','metadata.xml'):
                     eml = zf.read(info.filename).decode()
-                if fname == 'meta.xml':
+                if p.name == 'meta.xml':
                     meta = zf.read(info.filename).decode()
             if eml != '' and meta != '':
                 self.metadata = DwCMetadata(eml)
