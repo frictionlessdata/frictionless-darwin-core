@@ -1,12 +1,17 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='FrictionlessDarwinCore',
-    version='0.1.2',
+    version='0.1.3',
     author='André Heughebaert',
     author_email='andrejjh@gmail.com',
     license='MIT License',
     description='A tool converting Darwin Core Archive into Frictionless Data Package.',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
