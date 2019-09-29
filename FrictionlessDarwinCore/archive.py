@@ -26,8 +26,8 @@ class DwCArchive:
         try:
             response = requests.get(self.dwca)
             self.tf.write(response.content)
-        except BaseException:
-            print('HTTP download failed')
+        except requests.exceptions.RequestException as err:
+            print(err)
             self.valid = False
         else:
             print('downloading ' + self.dwca + ' as ' + self.tf.name)
