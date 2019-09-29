@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dc="http://purl.org/dc/terms/"
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml.xsd"
+    packageId="619a4b95-1a82-4006-be6a-7dbe3c9b33c5/v7" system="http://gbif.org" scope="system">
+    <dataset>
+        <title>Database for alien invasive plants occurrences in Germany</title>
+        <creator>
+            <organizationName>Independent Institute for Environmental Issues</organizationName>
+        </creator>
+        <metadataProvider>
+            <organizationName>Katrin Schneider</organizationName>
+            <address><deliveryPoint>UfU e. V. Gro&#223;e Klausstra&#223;e 11  06108 Halle</deliveryPoint></address>
+            <phone>0049 345 2026530</phone>
+            <electronicMailAddress>katrin.schneider@ufu.de</electronicMailAddress>
+        </metadataProvider>
+        <pubDate>2018</pubDate>
+        <abstract>
+            <para>The dataset includes occurrence data of invasive and potentially invasive nonnative plant species. The datasets are being collected since 2010, mostly in the German federal state Saxony-Anhalt, but also in other federal states of Germany and in Europe. Collectors are the staff of the Coordination Centre for alien invasive plant species (KORINA), employees of public authorities, scientists, students and citizens.</para>
+        </abstract>
+        <intellectualRights>
+           <para>
+              CC-BY 4.0
+           </para>
+        </intellectualRights>
+        <contact>
+            <individualName>
+                <surName>Katrin Schneider</surName>
+            </individualName>
+            <address><deliveryPoint>UfU e. V. Gro&#223;e Klausstra&#223;e 11  06108 Halle</deliveryPoint></address>
+            <phone>0049 345 2026530</phone>
+            <electronicMailAddress>katrin.schneider@ufu.de</electronicMailAddress>
+        </contact>
+    </dataset>
+    <additionalMetadata>
+        <metadata>
+            <gbif>
+                <dateStamp>2018-05-02T12:45:33</dateStamp>
+                <hierarchyLevel>dataset</hierarchyLevel>
+                <citation>Schneider, K. 2010 (continuously updated). Alien invasive plants in Germany. Coordination centre for alien invasive plants in protected areas in Saxony-Anhalt at the Independent Institute for Environmental Issues (UfU e.V.)</citation>
+            </gbif>
+        </metadata>
+    </additionalMetadata>
+</eml:eml>

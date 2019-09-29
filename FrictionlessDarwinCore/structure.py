@@ -14,25 +14,30 @@ class DwCStructure:
         self.descriptor = {}
         self.corename = ''
         self.pkey_name = 'id'
-        self.valid = False
+        self.valid = True
 
     def convert(self):
         # convert meta.xml into datapackage descriptor
-        self.descriptor = {}
-        if self.eml is not None:
-            dataset = ET.fromstring(self.eml).find('./dataset')
-            self._addheader(dataset)
-        if self.meta is not None:
-            archive = ET.fromstring(self.meta)
-            resources = []
-            core = archive.find('dwc:core', DwCStructure.ns)
-            self.corename = core.get('rowType').rsplit('/', 1)[1].lower()
+        try:
+            self.descriptor = {}
+            if self.eml is not None:
+                dataset = ET.fromstring(self.eml).find('./dataset')
+                self._addheader(dataset)
+            if self.meta is not None:
+                archive = ET.fromstring(self.meta)
+                resources = []
+                core = archive.find('dwc:core', DwCStructure.ns)
+                self.corename = core.get('rowType').rsplit('/', 1)[1].lower()
 
-            resources.append(self._toresource(core, True))
-            for extension in archive.findall('dwc:extension', DwCStructure.ns):
-                resources.append(self._toresource(extension, False))
-            self._add('resources', resources)
-        self.valid = True
+                resources.append(self._toresource(core, True))
+                for extension in archive.findall('dwc:extension', DwCStructure.ns):
+                    resources.append(self._toresource(extension, False))
+                self._add('resources', resources)
+        except BaseException as err:
+            self.valid = False
+            print(err, 'in DwCStructure.convert()')
+        else:
+            self.valid = True
         return self.as_json()
 
     def as_json(self):
@@ -53,18 +58,22 @@ class DwCStructure:
             if re.search('^https?://', ai.text):
                 source = {'title': 'GBIF IPT', 'path': ai.text}
                 sources.append(source)
-        self._add('title', dataset.findtext('./title'))
+        title=dataset.find('.title')
+        if title is not None:
+            self._add('title', title.text)
         self._add('profile', 'tabular-data-package')
         ipr = dataset.find('./intellectualRights')
         if ipr is not None:
             licence = {}
-            title = ipr.findtext('./para/ulink/citetitle')
-            if title is not None:
-                name = re.search('\((.+)\)', title)
-                if name is not None:
-                    licence['name'] = name.group(0)
-                licence['title'] = title
-            licence['path'] = ipr.find('./para/ulink').get('url')
+            ulink = ipr.find('./para/ulink')
+            if ulink is not None:
+                ct = ulink.findtext('./citetitle')
+                if ct is not None:
+                    name = re.search('\((.+)\)', ct)
+                    if name is not None:
+                        licence['name'] = name.group(0)
+                    licence['title'] = ct
+                licence['path'] = ulink.get('url')
             licences.append(licence)
         self._add('licences', licences)
 

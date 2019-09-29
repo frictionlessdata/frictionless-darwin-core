@@ -7,9 +7,9 @@ class DwCMetadata:
     def __init__(self, eml):
         self.allLines = []
         self.emls = eml
+        self.valid = True
 
     def convert(self):
-        self.valid = False
         try:
             self.allLines = []
             root = ET.fromstring(self.emls)
@@ -41,9 +41,9 @@ class DwCMetadata:
                 h.update(line.encode('utf-8'))
             self._about()
             self.hexdigest = h.hexdigest()
-        except:
+        except BaseException as err:
             self.valid = False
-            print("Unexpected error:", sys.exc_info()[0])
+            print(err, 'in DwCMetadata.convert()')
         else:
             self.valid = True
         return
@@ -85,10 +85,20 @@ class DwCMetadata:
 
     def _intellectualRigths(self, element):
         if element is not None:
-            ipr= element.find('./intellectualRights')
+            ipr = element.find('./intellectualRights')
             if ipr is not None:
-                self._addLine('## Intellectual Property Rights')
-                self._addLine(ipr.findtext('./para') + ' ['+ ipr.findtext('./para/ulink/citetitle') + ']('+ipr.findtext('./para/ulink') + ')')
+                para = ipr.find('./para')
+                if para is not None:
+                    self._addLine('## Intellectual Property Rights')
+                    ulink = para.find('./ulink')
+                    if ulink is not None:
+                        citetitle = ulink.find('./citetitle')
+                        ct = 'see'
+                        if citetitle is not None:
+                            ct = citetitle.text
+                        self._addLine(' [' + ct + '](' + ulink.get('url') + ')')
+                    else:
+                        self._addLine(para.text)
 
     def _geographicCoverage(self, element):
         if element is not None:

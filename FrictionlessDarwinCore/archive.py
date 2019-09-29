@@ -46,11 +46,10 @@ class DwCArchive:
         zf = zipfile.ZipFile(self.path, mode='r')
         try:
             for info in zf.infolist():
-                if info.filename == 'eml.xml':
+                fname=info.filename.rsplit("/",1)[1]
+                if fname in ('eml.xml','metadata.xml'):
                     eml = zf.read(info.filename).decode()
-                if info.filename == 'metadata.xml':
-                    eml = zf.read(info.filename).decode()
-                if info.filename == 'meta.xml':
+                if fname == 'meta.xml':
                     meta = zf.read(info.filename).decode()
             if eml != '' and meta != '':
                 self.metadata = DwCMetadata(eml)
@@ -58,6 +57,9 @@ class DwCArchive:
                 self.metadata.convert()
                 self.structure.convert()
                 self.valid = self.metadata.valid and self.structure.valid
+            else:
+                print('EML or Meta file missing')
+                self.valid = False
         except BaseException:
             print(sys.exc_info())
             print('load zip failed')
