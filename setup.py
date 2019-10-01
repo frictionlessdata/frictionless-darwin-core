@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='FrictionlessDarwinCore',
-    version='0.1.4',
+    version='0.1.5',
     author='André Heughebaert',
     author_email='andrejjh@gmail.com',
     license='MIT License',

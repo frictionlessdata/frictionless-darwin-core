@@ -8,9 +8,10 @@ class DwCStructure:
     voc = DwCVocabulary()
     ns = {'dwc': 'http://rs.tdwg.org/dwc/text/'}
 
-    def __init__(self, meta, eml):
+    def __init__(self, meta, eml, meta_dir =''):
         self.eml = eml
         self.meta = meta
+        self.meta_dir = meta_dir
         self.descriptor = {}
         self.corename = ''
         self.pkey_name = 'id'
@@ -95,7 +96,10 @@ class DwCStructure:
         files = mfile.find('dwc:files', DwCStructure.ns)
         location = files.find('dwc:location', DwCStructure.ns)
         r['name'] = location.text.split('.')[0]
-        r['path'] = location.text
+        if self.meta_dir == '':
+            r['path'] = location.text
+        else:
+            r['path'] = self.meta_dir + '/' + location.text
         r['description'] = mfile.get('rowType')
         r['profile'] = 'tabular-data-resource'
         r['encoding'] = mfile.get('encoding')

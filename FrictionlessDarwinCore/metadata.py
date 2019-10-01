@@ -68,7 +68,7 @@ class DwCMetadata:
             self._addLine('# ' + element.text)
 
     def _element(self, element):
-        if element is not None:
+        if element is not None and element.text is not None:
             self._addLine(element.tag + ': ' + element.text)
 
     def _abstract(self, element):

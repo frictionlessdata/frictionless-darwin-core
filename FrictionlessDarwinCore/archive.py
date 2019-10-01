@@ -46,6 +46,7 @@ class DwCArchive:
     def load(self):
         eml = ''
         meta = ''
+        meta_dir = ''
         zf = zipfile.ZipFile(self.path, mode='r')
         try:
             for info in zf.infolist():
@@ -54,9 +55,10 @@ class DwCArchive:
                     eml = zf.read(info.filename).decode()
                 if p.name == 'meta.xml':
                     meta = zf.read(info.filename).decode()
+                    meta_dir = p.parent.name
             if eml != '' and meta != '':
                 self.metadata = DwCMetadata(eml)
-                self.structure = DwCStructure(meta, eml)
+                self.structure = DwCStructure(meta, eml, meta_dir)
                 self.metadata.convert()
                 self.structure.convert()
                 self.valid = self.metadata.valid and self.structure.valid
