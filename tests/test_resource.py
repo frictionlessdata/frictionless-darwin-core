@@ -1,6 +1,7 @@
 import unittest
 from hashlib import blake2b
 from FrictionlessDarwinCore import DwCResource
+import xml.etree.ElementTree as ET
 
 
 class TestResource(unittest.TestCase):
@@ -8,6 +9,7 @@ class TestResource(unittest.TestCase):
     D1meta = '../data/D1/meta.xml'
     D1data = '../data/D1/classification.txt'
     D1hd = '57bb9a0319d4b4386dc7f1da011fb339'
+    ns = {'dwc': 'http://rs.tdwg.org/dwc/text/'}
 
 
     def test_D1(self):
@@ -16,7 +18,9 @@ class TestResource(unittest.TestCase):
         """
         m = open(TestResource.D1meta)
         d = open(TestResource.D1data)
-        r = DwCResource(m.read(), d.read())
+        archive = ET.fromstring(m.read())
+        core = archive.find('dwc:core', TestResource.ns)
+        r = DwCResource(core, d.read())
         m.close()
         d.close()
         self.assertIsNotNone(r)

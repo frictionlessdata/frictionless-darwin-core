@@ -7,7 +7,7 @@ class DwCResource:
     voc = DwCVocabulary()
     ns = {'dwc': 'http://rs.tdwg.org/dwc/text/'}
 
-    def __init__(self, meta, data):
+    def __init__(self, meta: ET, data: str):
         self.meta = meta
         self.data = data
         self.valid = True
@@ -16,9 +16,9 @@ class DwCResource:
     def convert(self):
         self.rows= []
         fields={}
-        if self.meta is not None:
-            mfile = ET.fromstring(self.meta)
-        for f in mfile.findall('field'):
+        if self.meta is None:
+            return
+        for f in self.meta.findall('dwc:field', DwCResource.ns):
             if f.get('default') is None:
                 fields[f.get('term')] = ''
             else:
@@ -47,10 +47,29 @@ class DwCResource:
 
     def as_csv(self):
         output = io.StringIO()
-        datawriter = csv.writer(output, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        datawriter = csv.writer(output, lineterminator= self._delimiter('linesTerminatedBy'),
+                                delimiter = self._delimiter('fieldsTerminatedBy'),
+                                quotechar=self._delimiter('fieldsEnclosedBy'),
+                                quoting=csv.QUOTE_MINIMAL)
         for r in self.rows:
             datawriter.writerow(r)
         return output.getvalue()
+
+    def _delimiter(self, delimiter_string):
+        switcher = {
+            "\\n": '\n',
+            "\\r": '\r',
+            "\\r\\n": '\r\n',
+            "\\t": '\t',
+        }
+        ds = self.meta.get(delimiter_string)
+        if ds is not None:
+            return switcher.get(ds, ds)
+        else:
+            if delimiter_string == 'fieldsEnclosedBy':
+                return '"'
+            else:
+                return ''
 
     def _append(self, row):
         self.rows.append(row)

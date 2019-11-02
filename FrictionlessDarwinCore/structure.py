@@ -15,6 +15,7 @@ class DwCStructure:
         self.descriptor = {}
         self.corename = ''
         self.pkey_name = 'id'
+        self.has_default_values = False
         self.valid = True
 
     def convert(self):
@@ -43,6 +44,7 @@ class DwCStructure:
 
     def as_json(self):
         return json.dumps(self.descriptor)
+
 
     def _add(self, key, value):
         self.descriptor[key] = value
@@ -87,7 +89,10 @@ class DwCStructure:
             "\\r\\n": '\r\n',
             "\\t": '\t',
         }
-        return switcher.get(delimiter_string, delimiter_string)
+        if delimiter_string is not None:
+            return switcher.get(delimiter_string, delimiter_string)
+        else:
+            return ''
 
     def _toresource(self, mfile, core):
         if mfile is None:
@@ -96,10 +101,7 @@ class DwCStructure:
         files = mfile.find('dwc:files', DwCStructure.ns)
         location = files.find('dwc:location', DwCStructure.ns)
         r['name'] = location.text.split('.')[0]
-        if self.meta_dir == '':
-            r['path'] = location.text
-        else:
-            r['path'] = self.meta_dir + '/' + location.text
+        r['path'] = location.text
         r['description'] = mfile.get('rowType')
         r['profile'] = 'tabular-data-resource'
         r['encoding'] = mfile.get('encoding')
@@ -152,6 +154,8 @@ class DwCStructure:
                     field['format'] = term['format']
                 if term['constraints'] != '':
                     field['constraints'] = json.loads(term['constraints'])
+            if f.get('default') is not None:
+                self.has_default_values = True
             fields.append(field)
         schema['fields'] = fields
         r['schema'] = schema
