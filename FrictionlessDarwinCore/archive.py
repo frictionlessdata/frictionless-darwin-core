@@ -51,7 +51,6 @@ class DwCArchive:
         zf = zipfile.ZipFile(self.path, mode='r')
         try:
             for info in zf.infolist():
-                print(info.filename)
                 p=Path(info.filename)
                 if p.name in ('eml.xml','metadata.xml'):
                     eml = zf.read(info.filename).decode()
@@ -160,7 +159,7 @@ class DwCArchive:
             ozf.close()
 
     def to_csv(self, output):
-        self._save_data()
+        self._save_data(output)
 
     def to_json(self, output):
         o = open(output, 'w')

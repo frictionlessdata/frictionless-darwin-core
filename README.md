@@ -5,6 +5,7 @@ A tool converting [Darwin Core Archive](https://en.wikipedia.org/wiki/Darwin_Cor
 * **datapackage.json**: Ensure your DarwinCore archive complies with [Frictionless specifications](https://frictionlessdata.io/specs/)
 * **README.md**: Add human readable metadata from [EML](https://en.wikipedia.org/wiki/Ecological_Metadata_Language)
 * **Support all standards [DarwinCore terms](#darwincore-terms)**
+* **Support default values in DarwinCore schema**
 * **Fields constraints**: Enable further data validation, with [goodtables](https://github.com/frictionlessdata/goodtables-py)
 * **URL**: Accept DarwinCore Archive from local path or URL
 * **Command line interface**
@@ -35,7 +36,7 @@ fdwca --help
 Usage: fdwca [OPTIONS] DWCA OUTPATH
 
 Options:
-  -f, --format [json|md]  Output format
+  -f, --format [json|md|csv]  Output format
   --help                  Show this message and exit.
 
 # convert from local DwC archive
@@ -49,6 +50,10 @@ fdwca -f json https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles 
 
 # only generates markdown human readable metadata (readme.md)
 fdwca -f md https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles readme.md
+
+# only converts data as zipped CSV files
+fdwca -f csv https://ipt.biodiversity.be/archive.do?r=rbins_saproxilyc_beetles beetles.zip
+
 ```
 
 ### Python use
@@ -67,6 +72,8 @@ if da.valid:
   da.to_json('datpackage.json')
   # ... or generates separate markdown human readable metadata
   da.to_markdown('readme.md')
+  # ... or generated zip with data files only
+  da.to_csv('data.zip')
 ```
 
 ## Documentation
@@ -84,7 +91,7 @@ DarwinCore archives consist of:
 * eml.xml: **metadata** written in Ecological Metadata Language
 * meta.xml: the **structure** of the DarwinCore data files
 
-This conversion tool appends two files to the archive, see diagram below:
+Basically, this conversion tool appends two files to the archive, see diagram below:
 * **datapackage.json**: data package descriptor of the data files
 * **readme.md**: markdown, human readable, metadata
 
@@ -119,6 +126,8 @@ This conversion tool appends two files to the archive, see diagram below:
 └─────────────────────────────────────────────────────────────────┘
 </pre>
 The tool can also generate these two files as separate outputs without touching the archive.
+
+Additionally, the tool also converts the Core and Extension(s) files, when needed.
 
 ### DarwinCore terms
 Darwin Core is a very persmissive standard some recommandations but almost no constraining rules. This [table](https://github.com/andrejjh/FrictionlessDarwinCore/blob/master/FrictionlessDarwinCore/fdwc_terms.csv) assigns Frictionless Data Package's type, format and constraints to every [Darwin Core term](https://dwc.tdwg.org/terms/).
