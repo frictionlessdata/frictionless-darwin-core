@@ -47,10 +47,15 @@ class DwCResource:
 
     def as_csv(self):
         output = io.StringIO()
+        quotechar=self._delimiter('fieldsEnclosedBy')
+        if quotechar == '':
+            quoting = csv.QUOTE_NONE
+        else:
+            quoting = csv.QUOTE_MINIMAL
         datawriter = csv.writer(output, lineterminator= self._delimiter('linesTerminatedBy'),
                                 delimiter = self._delimiter('fieldsTerminatedBy'),
-                                quotechar=self._delimiter('fieldsEnclosedBy'),
-                                quoting=csv.QUOTE_MINIMAL)
+                                quotechar=quotechar,
+                                quoting=quoting)
         for r in self.rows:
             datawriter.writerow(r)
         return output.getvalue()
