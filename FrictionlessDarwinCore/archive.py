@@ -20,6 +20,7 @@ class DwCArchive:
         self.metadata = None
         self.structure = None
         self.tf = None
+        self.need_conversion = False
         if self.dwca.startswith('http'):
             self.path = self.download()
         else:
@@ -63,6 +64,7 @@ class DwCArchive:
                 self.metadata.convert()
                 self.structure.convert()
                 self.valid = self.metadata.valid and self.structure.valid
+                self.need_conversion = self.structure.has_default_values
             else:
                 print('EML or Meta file missing')
                 self.valid = False
@@ -91,7 +93,7 @@ class DwCArchive:
         return resource
 
     def save(self, output):
-        if self.structure.has_default_values:
+        if self.need_conversion:
             # convert all data files
             self._save_data(output)
             self._save_dwc_meta(output)

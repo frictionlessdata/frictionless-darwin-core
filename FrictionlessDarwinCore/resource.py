@@ -23,7 +23,8 @@ class DwCResource:
                 fields[f.get('term')] = ''
             else:
                 fields[f.get('term')] = f.get('default')
-        datareader = csv.reader(self.data.split('\n'), delimiter='\t')
+        datareader = csv.reader(self.data.split(self._delimiter('linesTerminatedBy')),
+                                delimiter=self._delimiter('fieldsTerminatedBy'))
         header = []
         for f in fields:
             header.append(f.rsplit('/', 1)[1])
