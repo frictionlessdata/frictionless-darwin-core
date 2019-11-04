@@ -100,7 +100,7 @@ class DwCStructure:
         r = {}
         files = mfile.find('dwc:files', DwCStructure.ns)
         location = files.find('dwc:location', DwCStructure.ns)
-        r['name'] = location.text.split('.')[0]
+        r['name'] = location.text.split('.')[0].lower()
         r['path'] = location.text
         r['description'] = mfile.get('rowType')
         r['profile'] = 'tabular-data-resource'

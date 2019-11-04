@@ -10,19 +10,43 @@ class DwCResource:
     def __init__(self, meta: ET, data: str):
         self.meta = meta
         self.data = data
+        self.core = meta.tag.endswith('core')
         self.valid = True
         self.rows= []
 
-    def convert(self):
-        self.rows= []
+    def _get_fields(self):
         fields={}
         if self.meta is None:
             return
+        index_id='0'
+
+        if self.core:
+            index = self.meta.find('dwc:id', DwCResource.ns)
+        else:
+            index = self.meta.find('dwc:coreid', DwCResource.ns)
+        if index is not None:
+            index_id = index.get('index')
+
+        need_additional_id_field = True
+        for f in self.meta.findall('dwc:field', DwCResource.ns):
+            if f.get('index') == index_id:
+                need_additional_id_field = False
+
+        if need_additional_id_field:
+            fields['http://rs.tdwg.org/dwc/text/id'] = ''
+
         for f in self.meta.findall('dwc:field', DwCResource.ns):
             if f.get('default') is None:
                 fields[f.get('term')] = ''
             else:
                 fields[f.get('term')] = f.get('default')
+        return fields
+
+    def convert(self):
+        if self.meta is None:
+            return
+        self.rows= []
+        fields = self._get_fields()
         datareader = csv.reader(self.data.split(self._delimiter('linesTerminatedBy')),
                                 delimiter=self._delimiter('fieldsTerminatedBy'))
         header = []
