@@ -140,4 +140,6 @@ The initial [test cases suite](./testCases.md) covers a wide variety of Darwin C
 You are encouraged to contribute by identifying/reporting issues or incompatiblities and helping to solve them.
 
 ### Not familiar with Darwin Core?
-Have a look at iDigBio's [Darwin Core Hour](https://www.idigbio.org/content/darwin-core-hour-webinar-series) Webinar Series.
+Have a look at these online documents:
+* [Darwin Core Archives – How-to Guide](https://github.com/gbif/ipt/wiki/DwCAHowToGuide)
+* iDigBio's [Darwin Core Hour](https://www.idigbio.org/content/darwin-core-hour-webinar-series) Webinar Series.

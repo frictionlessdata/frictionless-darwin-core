@@ -24,4 +24,4 @@ Checklist core + 7 extensions [(DwcA)](http://tb.plazi.org/GgServer/dwca/FFF2FF9
 
 
 ## Data conversion cases
-* D1 [Lice (Phthiraptera) of Ireland](https://www.gbif.org/dataset/6e21cfd9-34ed-4983-bab4-0e912a5770bd), Occurrence Core with default values [DWCA](http://gbif.biodiversityireland.ie/LiceOfIreland.zip)
+* D1: [Lice (Phthiraptera) of Ireland](https://www.gbif.org/dataset/6e21cfd9-34ed-4983-bab4-0e912a5770bd), Occurrence Core with default values [(DwcA)](http://gbif.biodiversityireland.ie/LiceOfIreland.zip)
