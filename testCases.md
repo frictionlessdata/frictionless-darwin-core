@@ -21,3 +21,7 @@ Occurrence core + multimedia extension, large file, 1 GB of uncompressed data wi
 Event core + 2 extensions (ExtendedMeasurementOrFact & Occurrence) [(DwcA)](http://gp.sea.gov.ua:8082/ipt/archive.do?r=phyto2016-37)
 * C3: [Empidoid flies from Cabo Verde (Diptera, Empidoidea, Dolichopodidae and Hybotidae) are not only composed of Old World tropical species](http://tb.plazi.org/GgServer/dwca/FFF2FF91FFD8FF8818250D59B410FF9B.zip) by PLAZI
 Checklist core + 7 extensions [(DwcA)](http://tb.plazi.org/GgServer/dwca/FFF2FF91FFD8FF8818250D59B410FF9B.zip)
+
+
+## Data conversion cases
+* D1 [Lice (Phthiraptera) of Ireland](https://www.gbif.org/dataset/6e21cfd9-34ed-4983-bab4-0e912a5770bd), Occurrence Core with default values [DWCA](http://gbif.biodiversityireland.ie/LiceOfIreland.zip)
