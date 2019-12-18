@@ -102,7 +102,7 @@ class DwCStructure:
         location = files.find('dwc:location', DwCStructure.ns)
         r['name'] = location.text.split('.')[0].lower()
         r['path'] = location.text
-        r['description'] = mfile.get('rowType')
+        r['rdfType'] = mfile.get('rowType')
         r['profile'] = 'tabular-data-resource'
         r['encoding'] = mfile.get('encoding')
         r['format'] = 'csv'
@@ -149,7 +149,7 @@ class DwCStructure:
             else:
                 field['name'] = term['name']
                 field['type'] = term['type']
-                field['description'] = mterm
+                field['rdfType'] = mterm
                 if term['format'] != 'default':
                     field['format'] = term['format']
                 if term['constraints'] != '':
