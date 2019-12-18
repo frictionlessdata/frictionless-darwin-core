@@ -23,5 +23,14 @@ Event core + 2 extensions (ExtendedMeasurementOrFact & Occurrence) [(DwcA)](http
 Checklist core + 7 extensions [(DwcA)](http://tb.plazi.org/GgServer/dwca/FFF2FF91FFD8FF8818250D59B410FF9B.zip)
 
 
-## Data conversion cases
+## Data cases
 * D1: [Lice (Phthiraptera) of Ireland](https://www.gbif.org/dataset/6e21cfd9-34ed-4983-bab4-0e912a5770bd), Occurrence Core with default values [(DwcA)](http://gbif.biodiversityireland.ie/LiceOfIreland.zip)
+* D2: [The Great Koaloa Count South Australia]
+[(DwcA)](https://biocache.ala.org.au/archives/gbif/dr1008/dr1008.zip)
+
+
+## Tricky cases
+* T1: [The Brown University Foraminiferal Data Base (BFD)](https://www.gbif.org/dataset/68efc55e-f762-11e1-a439-00145eb45e9a) Occurrence dataset [(DwcA)](http://digir.pangaea.de/dwca/?id=96900)
+* T2: [Database for alien invasive plants occurrences in Germany](https://www.gbif.org/dataset/f0c74a2c-4bd8-49d0-837a-92bb835fd2f3) Occurrence dataset [(DwcA)](http://85.214.43.90/biocase/downloads/korina/Database%20for%20alien%20invasive%20plants%20occurrences%20in%20Germany.DwCA.zip)
+* T3: [AfriBats](https://www.gbif.org/dataset/5af9dd93-3a27-43b6-afea-bf8a3bca5dc9)Checklist dataset [(DwcA)](http://afribats.myspecies.info/gbif-dwca.zip)
+* T4: [Naturalis Biodiversity Center (NL) - Amphibia and Reptilia](https://www.gbif.org/dataset/fccafd83-a934-4021-a112-4ae5fd39c14b)[(DwcA)](http://api.biodiversitydata.nl/v2/specimen/dwca/getDataSet/amphibia-and-reptilia)

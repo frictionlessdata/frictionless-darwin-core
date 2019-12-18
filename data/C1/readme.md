@@ -2,10 +2,10 @@
 
 alternateIdentifier: b740eaa0-0679-41dc-acb7-990d562dfa37
 
-alternateIdentifier: http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/resource?r=botanical_collection
+alternateIdentifier: http://apm-ipt.br.fgov.be:8080/ipt/resource?r=botanical_collection
 
 pubDate: 
-      2019-05-23
+      2019-10-14
   
 
 language: eng
@@ -50,11 +50,11 @@ Meise Botanic Garden was founded in the early 18th century and is one of the 15 
 
 ## Intellectual Property Rights
 
-This work is licensed under a  [Creative Commons Attribution (CC-BY) 4.0 License]()
+ [Creative Commons Attribution (CC-BY) 4.0 License](http://creativecommons.org/licenses/by/4.0/legalcode)
 
 ## Geographic Coverage
 
-Description: Global
+geographicDescription: Global
 
 BoundingCoordinates: West:-180°, East:180°, North:90°, South:-90°
 
@@ -124,9 +124,9 @@ hierarchyLevel: dataset
 
 citation: Meise Botanic Garden (2018) Meise Botanic Garden Herbarium (BR). v1. Dataset/Occurrence. http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/resource?r=botanical_collection&amp;v=1.0
 
-resourceLogoUrl: http://apm-ipt.br.fgov.be:8080/ipt-2.3.5/logo.do?r=botanical_collection
+resourceLogoUrl: http://apm-ipt.br.fgov.be:8080/ipt/logo.do?r=botanical_collection
 
-{http://purl.org/dc/terms/}replaces: b740eaa0-0679-41dc-acb7-990d562dfa37/v1.9.xml
+{http://purl.org/dc/terms/}replaces: b740eaa0-0679-41dc-acb7-990d562dfa37/v1.1.xml
 
 ---
 

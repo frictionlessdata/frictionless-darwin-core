@@ -44,11 +44,11 @@ AxIOM is a sample-based dataset (n = 187 samples) documenting occurrences of amp
 
 ## Intellectual Property Rights
 
-This work is licensed under a  [Creative Commons Attribution (CC-BY) 4.0 License]()
+ [Creative Commons Attribution (CC-BY) 4.0 License](http://creativecommons.org/licenses/by/4.0/legalcode)
 
 ## Geographic Coverage
 
-Description: AxIOM contains samples taken in Posidonia oceanica seagrass meadows from Mediterranean Islands. Two regions were investigated: Corsica (Calvi Bay) and Sardinia (Tavolara-Punta Coda Cavallo marine protected area)
+geographicDescription: AxIOM contains samples taken in Posidonia oceanica seagrass meadows from Mediterranean Islands. Two regions were investigated: Corsica (Calvi Bay) and Sardinia (Tavolara-Punta Coda Cavallo marine protected area)
 
 BoundingCoordinates: West:8.725°, East:9.778°, North:42.58°, South:40.859°
 

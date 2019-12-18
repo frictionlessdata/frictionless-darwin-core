@@ -58,11 +58,11 @@ This dataset contains records of bony fishes and elasmobranchs collected by Reef
 
 ## Intellectual Property Rights
 
-This work is licensed under a  [Creative Commons Attribution (CC-BY) 4.0 License]()
+ [Creative Commons Attribution (CC-BY) 4.0 License](http://creativecommons.org/licenses/by/4.0/legalcode)
 
 ## Geographic Coverage
 
-Description: The Reef Life Survey reef fish dataset covers more than 2,500 sites in coral and rocky reefs distributed worldwide.
+geographicDescription: The Reef Life Survey reef fish dataset covers more than 2,500 sites in coral and rocky reefs distributed worldwide.
 
 BoundingCoordinates: West:-180°, East:180°, North:90°, South:-90°
 

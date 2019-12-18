@@ -54,11 +54,11 @@ Phytoplankton data, species composition, abundance (cells/l) (SDN:P01: PU00M00Z)
 
 ## Intellectual Property Rights
 
-This work is licensed under a  [Creative Commons Attribution Non Commercial (CC-BY-NC) 4.0 License]()
+ [Creative Commons Attribution Non Commercial (CC-BY-NC) 4.0 License](http://creativecommons.org/licenses/by-nc/4.0/legalcode)
 
 ## Geographic Coverage
 
-Description: Bulgarian Black Sea area
+geographicDescription: Bulgarian Black Sea area
 
 BoundingCoordinates: West:27.455°, East:28.96°, North:43.716°, South:42.008°
 

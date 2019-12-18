@@ -56,11 +56,11 @@ De Prins, J. & De Prins, W. 2011. Afromoths, online database of Afrotropical mot
 
 ## Intellectual Property Rights
 
-This work is licensed under a  [Creative Commons Attribution (CC-BY) 4.0 License]()
+ [Creative Commons Attribution (CC-BY) 4.0 License](http://creativecommons.org/licenses/by/4.0/legalcode)
 
 ## Geographic Coverage
 
-Description: subsaharian Africa
+geographicDescription: subsaharian Africa
 
 BoundingCoordinates: West:-18.44°, East:53.24°, North:21.48°, South:-36.48°
 

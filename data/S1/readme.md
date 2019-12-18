@@ -2,10 +2,10 @@
 
 alternateIdentifier: d3d38190-0c13-11df-b8c6-b8a03c50a862
 
-alternateIdentifier: http://ipt.biodiversity.be/resource?r=rbins_saproxilyc_beetles
+alternateIdentifier: https://ipt.biodiversity.be/resource?r=rbins_saproxilyc_beetles
 
 pubDate: 
-      2019-01-28
+      2019-10-16
   
 
 language: eng
@@ -53,7 +53,7 @@ This data is also presented on a website: http://projects.biodiversity.be/beetle
 
 ## Geographic Coverage
 
-Description: Belgium
+geographicDescription: Belgium
 
 BoundingCoordinates: West:2.48°, East:6.44°, North:51.55°, South:49.43°
 
@@ -77,7 +77,7 @@ dateStamp: 2015-04-23T10:40:39.503+02:00
 
 hierarchyLevel: dataset
 
-{http://purl.org/dc/terms/}replaces: d3d38190-0c13-11df-b8c6-b8a03c50a862/v9.37.xml
+{http://purl.org/dc/terms/}replaces: d3d38190-0c13-11df-b8c6-b8a03c50a862/v9.38.xml
 
 ---
 
