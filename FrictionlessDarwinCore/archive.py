@@ -81,7 +81,7 @@ class DwCArchive:
             for info in zf.infolist():
                 p = Path(info.filename)
                 if p.name == filename:
-                    data = zf.read(info.filename, "rU").decode()
+                    data = zf.read(info.filename)
                     resource = DwCResource(meta, data)
         except KeyError:
             print ('Did not find %s in zip file' % p)

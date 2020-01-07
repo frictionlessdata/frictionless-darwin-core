@@ -9,7 +9,7 @@ class DwCResource:
 
     def __init__(self, meta: ET, data: str):
         self.meta = meta
-        self.data = data
+        self.data = data.decode('utf-8')
         self.core = meta.tag.endswith('core')
         self.valid = True
         self.rows= []
@@ -46,9 +46,10 @@ class DwCResource:
         if self.meta is None:
             return
         self.rows= []
+#        print(ET.tostring(self.meta))
         fields = self._get_fields()
         datareader = csv.reader(self.data.split(self._delimiter('linesTerminatedBy')),
-                                delimiter=self._delimiter('fieldsTerminatedBy'))
+            delimiter=self._delimiter('fieldsTerminatedBy'))
         header = []
         for f in fields:
             header.append(f.rsplit('/', 1)[1])
