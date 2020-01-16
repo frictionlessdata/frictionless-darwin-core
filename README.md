@@ -136,10 +136,15 @@ Values that do not comply with these **Frictionless DarwinCore rules** will auto
 ### Test cases suite
 The initial [test cases suite](./testCases.md) covers a wide variety of Darwin Core usages. It should give enough confidence that basic incompatibilities are identified, reported and solved but it will not guarantee that all possible DwC Archives will automatically translate into valid Data Packages.
 
+## Changelog
+Here described only breaking and the most important changes.
+
 ## Contributing
 You are encouraged to contribute by identifying/reporting issues or incompatiblities and helping to solve them.
 
-### Not familiar with Darwin Core?
-Have a look at these online documents:
+### Further readings
+Have a look at these online DarwinCore pages:
 * [Darwin Core Archives – How-to Guide](https://github.com/gbif/ipt/wiki/DwCAHowToGuide)
 * iDigBio's [Darwin Core Hour](https://www.idigbio.org/content/darwin-core-hour-webinar-series) Webinar Series.
+
+More information available under the [project blog](https://andrejjh.github.io/fdwc.github.io/)
